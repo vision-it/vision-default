@@ -9,6 +9,10 @@ pkg/
 \#*
 .\#*
 
+# IntelliJ IDEA
+.idea
+*.iml
+
 # Mac files
 .DS_Store
 

@@ -1,19 +1,13 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-puppetversion = ENV.key?('PUPPET_VERSION') ? ENV['PUPPET_VERSION'] : ['>= 3.3']
-gem 'puppet', puppetversion
-gem 'puppetlabs_spec_helper', '>= 1.0.0'
-gem 'puppet-lint', '>= 1.0.0'
-gem 'facter', '>= 1.7.0'
-gem 'rspec-puppet'
-if RUBY_VERSION < '2.2'
-    gem 'rspec', ' < 3.2'
-else
-    gem 'rspec', '>= 3.4'
-end
-gem 'rake', ' < 10.0'
-gem 'beaker', github: 'puppetlabs/beaker', branch: 'master'
-gem 'pry'
-gem 'beaker-rspec'
-gem 'beaker_spec_helper'
-gem 'serverspec'
+puppetversion = ENV.key?('PUPPET_VERSION') ? ENV['PUPPET_VERSION'] : ['4.5']
+gem 'puppet', puppetversion,    :require => false
+gem 'puppetlabs_spec_helper',   :require => false
+gem 'metadata-json-lint',       :require => false
+gem 'rspec-puppet',             :require => false
+gem 'rspec-puppet-facts',       :require => false
+gem 'rake',                     :require => false
+# beaker related gems
+gem 'beaker-rspec',             :require => false
+gem 'serverspec',               :require => false
+gem 'specinfra',                :require => false

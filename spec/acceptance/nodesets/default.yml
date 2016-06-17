@@ -1,6 +1,6 @@
 HOSTS:
   debian-8-x64:
-    docker_container_name: mietzekatze
+    docker_container_name: vision_default
     default_apply_opts:
       order: random
       strict_variables:
@@ -10,7 +10,7 @@ HOSTS:
     docker_preserve_image: true
     docker_cmd: '["/sbin/init"]'
     docker_image_commands:
-      - 'apt-get install -y cron locales-all net-tools wget'
+      - 'apt-get install -y cron locales-all net-tools wget git-core apt-transport-https'
       - 'rm -f /usr/sbin/policy-rc.d'
 CONFIG:
   type: aio

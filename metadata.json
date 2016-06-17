@@ -1,9 +1,18 @@
 {
-	"name": "PROFILE_NAME",
-	"version": "0.1.0",
-	"author": "nce",
-	"data_provider": "hiera",
-	"source": "",
-	"license": "",
-	"dependencies": []
+  "name": "vision_default",
+  "version": "0.0.1",
+  "author": "vision-it",
+  "data_provider": "hiera",
+  "source": "",
+  "summary": "",
+  "license": "Apache-2.0",
+  "dependencies": [],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "8"
+      ]
+    }
+  ]
 }
