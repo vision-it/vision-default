@@ -16,6 +16,7 @@
 
 class vision_default (
 
+  String $type = $::nodetype,
   String $location = $::location,
   String $eth0_ip = $::ipaddress_eth0,
   String $dom0_hostname = $::dom0hostname,
@@ -42,8 +43,39 @@ class vision_default (
   contain ::vision_shells::zsh
   contain ::vision_ssh
 
+
+  if $type == 'server' {
+
+    contain ::vision_apt::unattended_upgrades
+    contain ::vision_pki
+    contain ::vision_logcheck
+    contain ::vision_exim
+    #contain ::vision_munin
+
+    # Install SMART tests on all non-VMs (physical servers)
+    if ($::location !~ '(?i:Vm)$') {
+      contain ::vision_smart
+    }
+  }
+
+
+  if $type == 'desktop' {
+
+    # Monitor/Resolution Config
+    file { '/usr/local/bin/xrandr.sh':
+      ensure => present,
+      source => 'puppet:///modules/vision_default/xrandr.sh',
+      mode   => '0775',
+      owner  => 'root',
+      group  => 'vision-it',
+
+    }
+  }
+
+
   # Files and Directories
   class { 'vision_default::files': }
+
 
   # /etc/resolv.conf
   if $location == 'dmz' {
@@ -54,10 +86,12 @@ class vision_default (
     }
   }
 
+
   # Packages
   class { 'vision_default::packages':
     packages => $default_packages,
   }
+
 
   # Repository
   if $repo_url {
@@ -68,10 +102,12 @@ class vision_default (
     }
   }
 
+
   # CA
   class { 'vision_default::ca':
     location => $location,
   }
+
 
   # Exported Resource
   if $location =~ /(dmz|int)Vm/ {

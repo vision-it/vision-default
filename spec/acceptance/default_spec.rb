@@ -12,6 +12,12 @@ describe 'vision_default' do
           class vision_editors::vim () {}
           class vision_shells::zsh () {}
           class vision_rsyslog () {}
+          class vision_pki () {}
+          class vision_logcheck () {}
+          class vision_exim () {}
+          class vision_munin () {}
+          class vision_smart () {}
+          class vision_apt::unattended_upgrades () {}
           class vision_groups::ssl_cert () {}
           class ruby () {}
           package { "zsh": }
@@ -19,6 +25,7 @@ describe 'vision_default' do
 
         class { 'vision_default':
          location      => 'int',
+         type          => 'desktop',
          dom0_hostname => 'beaker',
          eth0_ip       => '127.0.0.1',
          repo_key      => 'foobar',
@@ -61,6 +68,15 @@ describe 'vision_default' do
     describe file('/usr/local/share/ca-certificates/VisionCA.crt') do
       it { should be_file }
       it { should contain 'Certificate' }
+    end
+  end
+
+  context 'Desktop files provisioned' do
+    describe file('/usr/local/bin/xrandr.sh') do
+      it { should be_file }
+      it { should be_mode 775 }
+      it { should be_owned_by 'root' }
+      it { should be_grouped_into 'vision-it' }
     end
   end
 

@@ -12,6 +12,7 @@ HOSTS:
     docker_image_commands:
       - 'apt-get install -y cron locales-all net-tools wget git-core apt-transport-https'
       - 'rm -f /usr/sbin/policy-rc.d'
+      - 'groupadd vision-it'
 CONFIG:
   type: aio
 
