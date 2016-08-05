@@ -20,14 +20,14 @@ class vision_default (
   String $eth0_ip = $::ipaddress_eth0,
   String $dom0_hostname = $::dom0hostname,
 
+  Optional[String] $dns_domain,
   Array $dns_cnames,
   Array $dns_nameservers,
   Array $dns_search,
-  Optional[String] $dns_domain,
 
   Optional[String] $repo_url = undef,
-  String $repo_key,
-  String $repo_keyid,
+  Optional[String] $repo_key,
+  Optional[String] $repo_keyid,
 
   Hash $default_packages,
 
@@ -84,8 +84,7 @@ class vision_default (
       host_aliases => $cnames,
       ip           => $eth0_ip,
       tag          => $dom0_hostname,
-      }
-
     }
+  }
 
 }

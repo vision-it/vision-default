@@ -34,7 +34,34 @@ describe 'vision_default' do
       apply_manifest(pp, :catch_failures => true)
       apply_manifest(pp, :catch_changes => true)
     end
+  end
 
+  context 'example package installed' do
+    describe package('tmux') do
+      it { should be_installed}
+    end
+  end
+
+  context 'files provisioned' do
+    describe file('/vision') do
+      it { should be_directory }
+    end
+
+    describe file('/opt') do
+      it { should be_directory }
+    end
+
+    describe file('/root/.ssh') do
+      it { should be_directory }
+      it { should be_mode 700 }
+    end
+  end
+
+  context 'CA files provisioned' do
+    describe file('/usr/local/share/ca-certificates/VisionCA.crt') do
+      it { should be_file }
+      it { should contain 'Certificate' }
+    end
   end
 
 end

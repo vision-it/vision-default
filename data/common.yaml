@@ -3,6 +3,3 @@ vision_default::dns_nameservers: []
 vision_default::dns_search: []
 vision_default::dns_cnames: []
 vision_default::default_packages: {}
-
-
-
