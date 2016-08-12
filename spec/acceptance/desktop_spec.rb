@@ -2,7 +2,7 @@ require 'spec_helper_acceptance'
 
 describe 'vision_default' do
 
-  context 'with defaults' do
+  context 'Desktop Int' do
     it 'should idempotently run' do
       pp = <<-EOS
 

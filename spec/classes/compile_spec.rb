@@ -28,12 +28,52 @@ describe 'vision_default' do
         ]
       end
 
-      let(:params) {{
+      context 'Server Int' do
+
+        let(:params) {{
+                        :type => 'server',
+                        :location => 'int'
+                      }}
+
+        it { is_expected.to contain_class('vision_smart') }
+        it { is_expected.to compile.with_all_deps }
+
+      end
+
+
+      context 'Virtual Server DMZ' do
+
+        let(:params) {{
+                        :type => 'server',
+                        :location => 'dmzVm'
+                      }}
+
+        it { is_expected.to compile.with_all_deps }
+
+      end
+
+
+      context 'Server DMZ' do
+
+        let(:params) {{
+                        :type => 'server',
+                        :location => 'dmz'
+                      }}
+
+        it { is_expected.to contain_class('resolv_conf') }
+        it { is_expected.to compile.with_all_deps }
+
+      end
+
+
+      context 'Desktop Int' do
+
+        let(:params) {{
                       :type => 'desktop'
                     }}
 
-      context 'compile' do
         it { is_expected.to compile.with_all_deps }
+
       end
 
     end

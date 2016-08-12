@@ -53,7 +53,7 @@ class vision_default (
     #contain ::vision_munin
 
     # Install SMART tests on all non-VMs (physical servers)
-    if ($::location !~ '(?i:Vm)$') {
+    if ($location !~ '(?i:Vm)$') {
       contain ::vision_smart
     }
   }
