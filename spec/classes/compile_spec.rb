@@ -38,6 +38,7 @@ describe 'vision_default' do
         it { is_expected.to contain_class('vision_smart') }
         it { is_expected.to compile.with_all_deps }
 
+        it { expect(exported_resources).to contain_user('root') }
       end
 
 

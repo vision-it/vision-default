@@ -14,11 +14,13 @@
 class vision_default::files (
 ){
 
-  user { 'root':
+  # the user is exported, and later collected via the ohmyzsh module
+  # this is not the best solution but preventing a duplicate resource
+  # declaration
+  @@user { 'root':
     ensure         => present,
     home           => '/root',
     purge_ssh_keys => true,
-    require        => Package['zsh'],
   }
 
   file { '/root/.ssh':
