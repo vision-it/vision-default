@@ -22,7 +22,7 @@ describe 'vision_default' do
           'class vision_editors::vim () {}',
           'class vision_shells::zsh () {}',
           'class vision_rsyslog () {}',
-          'class vision_groups::ssl_cert () {}',
+          'class vision_groups () {}',
           'class ruby () {}',
           'package { "zsh": }'
         ]

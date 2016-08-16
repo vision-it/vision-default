@@ -18,7 +18,7 @@ describe 'vision_default' do
           class vision_munin () {}
           class vision_smart () {}
           class vision_apt::unattended_upgrades () {}
-          class vision_groups::ssl_cert () {}
+          class vision_groups () {}
           class ruby () {}
           package { "zsh": }
 
