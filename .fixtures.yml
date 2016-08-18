@@ -10,6 +10,17 @@ fixtures:
         apt:
           ref: "2.2.2"
           repo: "https://github.com/puppetlabs/puppetlabs-apt"
-
+        vision_shells:
+          ref: "origin/production"
+          repo: "https://github.com/vision-it/vision-shells"
+        ohmyzsh:
+          ref: "v1.0.4"
+          repo: "https://github.com/zanloy/puppet-ohmyzsh"
+        wget:
+          repo: "https://github.com/maestrodev/puppet-wget"
+          ref: "v1.7.3"
+        vision_groups:
+          repo: "https://github.com/vision-it/vision-groups"
+          ref: "origin/production"
     symlinks:
         vision_default: '#{source_dir}'
