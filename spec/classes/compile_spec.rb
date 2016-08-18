@@ -5,7 +5,7 @@ describe 'vision_default' do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
-        facts
+        facts.merge({:fqdn => 'debian-test'})
       end
 
       let :pre_condition do
@@ -20,11 +20,9 @@ describe 'vision_default' do
           'class vision_ntp () {}',
           'class vision_smart () {}',
           'class vision_editors::vim () {}',
-          'class vision_shells::zsh () {}',
           'class vision_rsyslog () {}',
           'class vision_groups () {}',
           'class ruby () {}',
-          'package { "zsh": }'
         ]
       end
 
@@ -36,9 +34,10 @@ describe 'vision_default' do
                       }}
 
         it { is_expected.to contain_class('vision_smart') }
+        it { is_expected.to contain_class('vision_default::types::server') }
+        it { is_expected.to_not contain_class('resolv_conf') }
         it { is_expected.to compile.with_all_deps }
 
-        it { expect(exported_resources).to contain_user('root') }
       end
 
 
@@ -49,7 +48,10 @@ describe 'vision_default' do
                         :location => 'dmzVm'
                       }}
 
+        it { is_expected.to contain_class('vision_default::types::server') }
+        it { is_expected.to_not contain_class('vision_smart') }
         it { is_expected.to compile.with_all_deps }
+        it { expect(exported_resources).to contain_host('debian-test')}
 
       end
 
@@ -57,22 +59,42 @@ describe 'vision_default' do
       context 'Server DMZ' do
 
         let(:params) {{
-                        :type => 'server',
-                        :location => 'dmz'
+                        :type       => 'server',
+                        :location   => 'dmz',
+                        :dns_domain => 'foobar',
+                        :dns_cnames => [],
+                        :dns_nameservers => ['127.0.0.1'],
                       }}
 
+        it { is_expected.to contain_class('vision_default::types::server') }
+        it { is_expected.to contain_class('vision_smart') }
         it { is_expected.to contain_class('resolv_conf') }
         it { is_expected.to compile.with_all_deps }
 
       end
 
+      context 'Vagrant Development Server' do
+
+        let(:params) {{
+                        :type => 'server',
+                        :location => 'vrt'
+                      }}
+
+        it { is_expected.to contain_class('vision_default::types::server') }
+        it { is_expected.to_not contain_class('vision_smart') }
+        it { is_expected.to compile.with_all_deps }
+
+      end
 
       context 'Desktop Int' do
 
         let(:params) {{
-                      :type => 'desktop'
+                      :type     => 'desktop',
+                      :location => 'int'
                     }}
 
+        it { is_expected.to contain_class('vision_default::types::desktop') }
+        it { is_expected.to_not contain_class('vision_smart') }
         it { is_expected.to compile.with_all_deps }
 
       end

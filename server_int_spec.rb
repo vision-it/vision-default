@@ -4,16 +4,6 @@ describe 'vision_default' do
 
   context 'Server Int' do
     it 'should idempotently run' do
-    pre = <<-EOS
-          file { '/root/.ssh/authorized_keys':
-            ensure => present,
-          }->
-          file_line { 'add ssh key':
-            ensure => present,
-            path   => '/root/.ssh/authorized_keys',
-            line   => 'ssh-rsa THISLINESHOULDBEREMOVED',
-          }
-      EOS
       pp = <<-EOS
 
           class vision_puppet::client () {}
@@ -28,7 +18,14 @@ describe 'vision_default' do
           class vision_smart () {}
           class vision_apt::unattended_upgrades () {}
           class ruby () {}
-
+          file { '/root/.ssh/authorized_keys':
+            ensure => present,
+          }->
+          file_line { 'add ssh key':
+            ensure => present,
+            path   => '/root/.ssh/authorized_keys',
+            line   => 'ssh-rsa THISLINESHOULDBEREMOVED',
+          }
 
        class { 'vision_default':
          location      => 'int',
@@ -45,7 +42,6 @@ describe 'vision_default' do
         }
       EOS
 
-      apply_manifest(pre, :catch_failures => true)
       apply_manifest(pp, :catch_failures => true)
       apply_manifest(pp, :catch_changes => true)
     end
@@ -57,7 +53,7 @@ describe 'vision_default' do
     end
   end
 
-  context 'unmangaed ssh keys should be purged from accounts' do
+  context 'ssh keys should be purged from accounts' do
     describe file('/root/.ssh/authorized_keys') do
       it { should_not contain 'THISLINESHOULDBEREMOVED' }
     end

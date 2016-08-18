@@ -10,7 +10,6 @@ describe 'vision_default' do
           class vision_ssh () {}
           class vision_ntp () {}
           class vision_editors::vim () {}
-          class vision_shells::zsh () {}
           class vision_rsyslog () {}
           class vision_pki () {}
           class vision_logcheck () {}
@@ -18,10 +17,12 @@ describe 'vision_default' do
           class vision_munin () {}
           class vision_smart () {}
           class vision_apt::unattended_upgrades () {}
-          class vision_groups () {}
-          class ruby () {}
-          package { "zsh": }
 
+          class ruby () {}
+
+          group { 'vision-it':
+            ensure => present,
+          }
 
         class { 'vision_default':
          location      => 'int',
