@@ -2,10 +2,21 @@
 
 [![Build Status](https://travis-ci.org/vision-it/vision-default.svg?branch=production)](https://travis-ci.org/vision-it/vision-default)
 
-## Parameter
+## Parameters
 
+### Default Packages
+Packages which should be installed on **every** node can be added to the
+[common.yaml](data/common.yaml).
 
-## Usage
+```yaml
+vision_default::default_packages:
+  zsh:
+    ensure: present
+  tcpdump:
+    ensure: absent
+```
+
+## Installation
 
 Include in the *Puppetfile*:
 
