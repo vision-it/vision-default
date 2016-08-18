@@ -19,20 +19,25 @@ class vision_default (
   String $type = $::nodetype,
   String $location = $::location,
   String $eth0_ip = $::ipaddress_eth0,
-  String $dom0_hostname = $::dom0hostname,
+  Optional[String] $dom0_hostname = $::dom0hostname,
 
-  Optional[String] $dns_domain,
-  Array $dns_cnames,
-  Array $dns_nameservers,
-  Array $dns_search,
+  Optional[String] $dns_domain = undef,
+  Optional[Array] $dns_cnames = undef,
+  Optional[Array] $dns_nameservers = undef,
+  Optional[Array] $dns_search = undef,
 
   Optional[String] $repo_url = undef,
   Optional[String] $repo_key,
   Optional[String] $repo_keyid,
 
-  Hash $default_packages,
+  Hash $default_packages = {},
 
 ) {
+
+  # Packages
+  class { 'vision_default::packages':
+    packages => $default_packages,
+  }
 
   contain ::ruby
   contain ::vision_editors::vim
@@ -40,7 +45,6 @@ class vision_default (
   contain ::vision_ntp
   contain ::vision_puppet::client
   contain ::vision_rsyslog
-  contain ::vision_shells::zsh
   contain ::vision_ssh
 
 
@@ -53,29 +57,38 @@ class vision_default (
     #contain ::vision_munin
 
     # Install SMART tests on all non-VMs (physical servers)
-    if ($location !~ '(?i:Vm)$') {
+    if ($location !~ '(?i:Vm|vrt)$') {
       contain ::vision_smart
     }
   }
 
 
   if $type == 'desktop' {
-
     # Monitor/Resolution Config
     file { '/usr/local/bin/xrandr.sh':
-      ensure => present,
-      source => 'puppet:///modules/vision_default/xrandr.sh',
-      mode   => '0775',
-      owner  => 'root',
-      group  => 'vision-it',
+      ensure  => present,
+      content => file('vision_default/xrandr.sh'),
+      mode    => '0775',
+      owner   => 'root',
+      group   => 'vision-it',
 
     }
   }
 
-
+  # the user is virtualized, and later realized via the ohmyzsh module
+  # this is not the best solution but preventing a duplicate resource
+  # declaration and it's allowing us to
+  @user { 'root':
+    ensure         => present,
+    home           => '/root',
+    purge_ssh_keys => true,
+  }
   # Files and Directories
-  class { 'vision_default::files': }
+  contain vision_default::files
 
+  class {'::vision_shells::zsh':
+    require => Class['vision_default::packages'],
+  }
 
   # /etc/resolv.conf
   if $location == 'dmz' {
@@ -87,10 +100,6 @@ class vision_default (
   }
 
 
-  # Packages
-  class { 'vision_default::packages':
-    packages => $default_packages,
-  }
 
 
   # Repository
