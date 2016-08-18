@@ -17,6 +17,8 @@ RSpec.configure do |c|
   # Readable test descriptions
   c.formatter = :documentation
 
+  c.max_displayed_failure_line_count = 5
+
   # Configure all nodes in nodeset
   c.before :suite do
     # Install module and dependencies
