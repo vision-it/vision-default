@@ -47,33 +47,7 @@ class vision_default (
   contain ::vision_rsyslog
   contain ::vision_ssh
 
-
-  if $type == 'server' {
-
-    contain ::vision_apt::unattended_upgrades
-    contain ::vision_pki
-    contain ::vision_logcheck
-    contain ::vision_exim
-    #contain ::vision_munin
-
-    # Install SMART tests on all non-VMs (physical servers)
-    if ($location !~ '(?i:Vm|vrt)$') {
-      contain ::vision_smart
-    }
-  }
-
-
-  if $type == 'desktop' {
-    # Monitor/Resolution Config
-    file { '/usr/local/bin/xrandr.sh':
-      ensure  => present,
-      content => file('vision_default/xrandr.sh'),
-      mode    => '0775',
-      owner   => 'root',
-      group   => 'vision-it',
-
-    }
-  }
+  contain "::vision_default::types::${type}"
 
   # the user is virtualized, and later realized via the ohmyzsh module
   # this is not the best solution but preventing a duplicate resource
