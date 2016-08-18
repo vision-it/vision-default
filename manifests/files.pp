@@ -14,15 +14,6 @@
 class vision_default::files (
 ){
 
-  # the user is exported, and later collected via the ohmyzsh module
-  # this is not the best solution but preventing a duplicate resource
-  # declaration
-  @@user { 'root':
-    ensure         => present,
-    home           => '/root',
-    purge_ssh_keys => true,
-  }
-
   file { '/root/.ssh':
     ensure => directory,
     owner  => root,
