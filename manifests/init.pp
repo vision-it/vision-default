@@ -27,11 +27,11 @@ class vision_default (
   Optional[Array] $dns_search = undef,
 
   Optional[String] $repo_url = undef,
-  Optional[String] $repo_key,
-  Optional[String] $repo_keyid,
+  Optional[String] $repo_key = undef,
+  Optional[String] $repo_keyid = undef,
 
-  Hash $default_packages = {},
-
+  Hash $default_packages = { },
+  Hash $sysctl_entries = { },
 ) {
 
   # Packages
@@ -60,7 +60,7 @@ class vision_default (
   # Files and Directories
   contain vision_default::files
 
-  class {'::vision_shells::zsh':
+  class { '::vision_shells::zsh':
     require => Class['vision_default::packages'],
   }
 
@@ -106,4 +106,10 @@ class vision_default (
     }
   }
 
+  # Sysctl
+  $sysctl_defaults = {
+    'ensure' => present,
+  }
+
+  create_resources(sysctl, $sysctl_entries, $sysctl_defaults)
 }
