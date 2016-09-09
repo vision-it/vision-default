@@ -1,6 +1,6 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-puppetversion = ENV.key?('PUPPET_VERSION') ? ENV['PUPPET_VERSION'] : ['4.5']
+puppetversion = ENV.key?('PUPPET_VERSION') ? ENV['PUPPET_VERSION'] : ['4.6.1']
 gem 'puppet', puppetversion,    :require => false
 gem 'puppetlabs_spec_helper',   :require => false
 gem 'metadata-json-lint',       :require => false
