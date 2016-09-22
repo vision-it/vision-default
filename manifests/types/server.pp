@@ -4,7 +4,7 @@ class vision_default::types::server () {
   contain ::vision_pki
   contain ::vision_logcheck
   contain ::vision_exim
-  contain ::vision_nagios
+  contain ::vision_nagios::client
   # tmp disabled; reenable after apache prd release
   #contain ::vision_munin
 

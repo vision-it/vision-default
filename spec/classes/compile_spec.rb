@@ -18,7 +18,7 @@ describe 'vision_default' do
           'class vision_apt::unattended_upgrades () {}',
           'class vision_exim () {}',
           'class vision_ntp () {}',
-          'class vision_nagios () {}',
+          'class vision_nagios::client () {}',
           'class vision_smart () {}',
           'class vision_editors::vim () {}',
           'class vision_rsyslog () {}',
