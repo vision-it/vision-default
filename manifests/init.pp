@@ -16,22 +16,22 @@
 
 class vision_default (
 
-  String $type = $::nodetype,
-  String $location = $::location,
-  String $eth0_ip = $::ipaddress_eth0,
-  Optional[String] $dom0_hostname = $::dom0hostname,
+  String $type                     = $::nodetype,
+  String $location                 = $::location,
+  String $eth0_ip                  = $::ipaddress_eth0,
+  Optional[String] $dom0_hostname  = $::dom0hostname,
 
-  Optional[String] $dns_domain = undef,
-  Optional[Array] $dns_cnames = undef,
+  Optional[String] $dns_domain     = undef,
+  Optional[Array] $dns_cnames      = undef,
   Optional[Array] $dns_nameservers = undef,
-  Optional[Array] $dns_search = undef,
+  Optional[Array] $dns_search      = undef,
 
-  Optional[String] $repo_url = undef,
-  Optional[String] $repo_key = undef,
-  Optional[String] $repo_keyid = undef,
+  Optional[String] $repo_url       = undef,
+  Optional[String] $repo_key       = undef,
+  Optional[String] $repo_keyid     = undef,
 
   Hash $default_packages = { },
-  Hash $sysctl_entries = { },
+  Hash $sysctl_entries   = { },
 ) {
 
   # Packages
@@ -73,9 +73,6 @@ class vision_default (
     }
   }
 
-
-
-
   # Repository
   if $repo_url {
     class { 'vision_default::repository':
@@ -85,12 +82,10 @@ class vision_default (
     }
   }
 
-
   # CA
   class { 'vision_default::ca':
     location => $location,
   }
-
 
   # Exported Resource
   if $location =~ /(dmz|int)Vm/ {
