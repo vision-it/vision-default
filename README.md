@@ -5,7 +5,6 @@
 This profile is included in **all** machines which manages:
   * Default Packages
   * Groups
-  * Nagios
   * Ntp
   * Puppet Client
   * Rsyslog
@@ -22,6 +21,7 @@ For **servers** this includes:
   * Exim
   * Logcheck
   * Munin
+  * Nagios
   * Smart on physical servers
   * Unattended upgrades
 
