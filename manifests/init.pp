@@ -22,7 +22,7 @@ class vision_default (
   Optional[String] $dom0_hostname  = $::dom0hostname,
 
   Optional[String] $dns_domain     = undef,
-  Optional[Array] $dns_cnames      = undef,
+  Optional[Array] $dns_cnames      = [],
   Optional[Array] $dns_nameservers = undef,
   Optional[Array] $dns_search      = undef,
 
