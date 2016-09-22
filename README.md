@@ -5,6 +5,7 @@
 This profile is included in **all** machines which manages:
   * Default Packages
   * Groups
+  * Nagios
   * Ntp
   * Puppet Client
   * Rsyslog
