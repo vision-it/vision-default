@@ -23,8 +23,8 @@ class vision_default (
 
   Optional[String] $dns_domain     = undef,
   Optional[Array] $dns_cnames      = [],
-  Optional[Array] $dns_nameservers = undef,
-  Optional[Array] $dns_search      = undef,
+  Optional[Array] $dns_nameservers = [],
+  Optional[Array] $dns_search      = [],
 
   Optional[String] $repo_url       = undef,
   Optional[String] $repo_key       = undef,
