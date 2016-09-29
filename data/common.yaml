@@ -1,1 +1,4 @@
 ---
+vision_default::blacklist_kernel_modules:
+  floppy:
+    ensure: present

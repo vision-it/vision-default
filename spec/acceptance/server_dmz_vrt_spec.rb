@@ -32,6 +32,7 @@ describe 'vision_default' do
          dns_nameservers  => [],
          dns_search       => [],
          dns_domain       => 'beaker',
+         blacklist_kernel_modules => { 'floppy' => {'ensure' => 'present'}},
         }
       EOS
 
@@ -65,6 +66,13 @@ describe 'vision_default' do
     describe file('/usr/local/share/ca-certificates/VisionCA.crt') do
       it { should be_file }
       it { should contain 'Certificate' }
+    end
+  end
+
+  context 'blacklist kernel modules' do
+    describe file('/etc/modprobe.d/blacklist-floppy.conf') do
+      it { should be_file }
+      it { should contain 'blacklist floppy' }
     end
   end
 

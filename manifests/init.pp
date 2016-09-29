@@ -30,8 +30,10 @@ class vision_default (
   Optional[String] $repo_key       = undef,
   Optional[String] $repo_keyid     = undef,
 
-  Hash $default_packages = { },
-  Hash $sysctl_entries   = { },
+  Hash $default_packages           = { },
+  Hash $sysctl_entries             = { },
+  Hash $blacklist_kernel_modules   = { },
+
 ) {
 
   # Packages

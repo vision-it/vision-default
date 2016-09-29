@@ -86,4 +86,11 @@ describe 'vision_default' do
     end
   end
 
+  context 'blacklist kernel modules' do
+    describe file('/etc/modprobe.d/blacklist-floppy.conf') do
+      it { should be_file }
+      it { should contain 'blacklist floppy' }
+    end
+  end
+
 end
