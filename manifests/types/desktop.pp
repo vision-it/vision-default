@@ -1,5 +1,13 @@
-# desktop specific
-class vision_default::types::desktop () {
+# Class: vision_default::types::desktop
+# ===========================
+#
+# Default profile for all desktop nodes.
+#
+# Parameters
+# ----------
+#
+class vision_default::types::desktop {
+
   # Monitor/Resolution Config
   file { '/usr/local/bin/xrandr.sh':
     ensure  => present,
