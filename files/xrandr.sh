@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-
 # Script to automatically configure the resolution / monitor setup of desktops PCs
-# Please edit (and push) when necessary
 
 case $(hostname) in
     "ux1104")
-        xrandr --auto --output 'HDMI-1' --mode '1920x1200' --left-of 'VGA-1' --output 'VGA-1' --mode '1600x1200'
+        xrandr --auto --output 'HDMI-1' --mode '1920x1200' --left-of 'VGA-1' --output 'VGA-1' --mode '1680x1050'
         ;;
     "ux1224")
         xrandr --auto --output 'DVI-I-1' --mode '1920x1200' --left-of 'VGA-1' --output 'VGA-1' --mode '1680x1050'
