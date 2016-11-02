@@ -8,6 +8,6 @@ gem 'rspec-puppet',             :require => false
 gem 'rspec-puppet-facts',       :require => false
 gem 'rake',                     :require => false
 # beaker related gems
-gem 'beaker-rspec',             :require => false
+gem 'beaker-rspec', '5.6.0'
 gem 'serverspec',               :require => false
 gem 'specinfra',                :require => false
