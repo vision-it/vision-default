@@ -2,3 +2,8 @@
 vision_default::blacklist_kernel_modules:
   floppy:
     ensure: present
+lookup_options:
+  vision_default::default_packages:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
