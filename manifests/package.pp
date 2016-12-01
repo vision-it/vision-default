@@ -12,13 +12,17 @@
 #
 
 define vision_default::package (
+
   $provider = apt,
-  $ensure = present,
+  $ensure   = present,
+
 ) {
 
-  package { $title:
-    ensure   => $ensure,
-    provider => $provider
+  if !defined(Package[ $title ]) {
+    package { $title:
+      ensure   => $ensure,
+      provider => $provider,
+    }
   }
 
 }
