@@ -1,4 +1,5 @@
 ---
+vision_default::type: 'server'
 vision_default::blacklist_kernel_modules:
   floppy:
     ensure: present
