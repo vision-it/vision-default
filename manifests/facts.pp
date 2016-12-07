@@ -13,19 +13,19 @@
 
 class vision_default::facts (
 
-  $applicationtier = hiera('applicationtier', 'production'),
-  $nodetype        = hiera('nodetype', 'server'),
+  $tier = hiera('applicationtier', 'production'),
+  $type = hiera('nodetype', 'server'),
 
 ){
 
   file { '/opt/puppetlabs/facter/facts.d/applicationtier.txt':
     ensure  => present,
-    content => "applicationtier=${applicationtier}",
+    content => "applicationtier=${tier}",
   }
 
   file { '/opt/puppetlabs/facter/facts.d/nodetype.txt':
     ensure  => present,
-    content => "nodetype=${nodetype}",
+    content => "nodetype=${type}",
   }
 
 }
