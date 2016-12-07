@@ -11,6 +11,7 @@ HOSTS:
     docker_cmd: '["/sbin/init"]'
     docker_image_commands:
       - 'apt-get install -y cron locales-all net-tools wget vim zsh git-core apt-transport-https'
+      - 'mkdir -p /opt/puppetlabs/facter/facts.d/'
       - 'rm -f /usr/sbin/policy-rc.d'
       - 'groupadd vision-it'
 CONFIG:

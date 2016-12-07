@@ -59,8 +59,9 @@ class vision_default (
     home           => '/root',
     purge_ssh_keys => true,
   }
-  # Files and Directories
+  # Files, directories and facts
   contain vision_default::files
+  contain vision_default::facts
 
   class { '::vision_shells::zsh':
     require => Class['vision_default::packages'],

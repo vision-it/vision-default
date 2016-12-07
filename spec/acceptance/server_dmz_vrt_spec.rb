@@ -69,6 +69,19 @@ describe 'vision_default' do
     end
   end
 
+  context 'facts provisioned' do
+    describe file('/opt/puppetlabs/facter/facts.d/applicationtier.txt') do
+      it { should be_file }
+      it { should contain 'production' }
+    end
+
+    describe file('/opt/puppetlabs/facter/facts.d/nodetype.txt') do
+      it { should be_file }
+      it { should contain 'server' }
+    end
+  end
+
+
   context 'blacklist kernel modules' do
     describe file('/etc/modprobe.d/blacklist-floppy.conf') do
       it { should be_file }
