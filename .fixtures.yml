@@ -16,9 +16,6 @@ fixtures:
         ohmyzsh:
           ref: "v1.0.4"
           repo: "https://github.com/zanloy/puppet-ohmyzsh"
-        wget:
-          repo: "https://github.com/maestrodev/puppet-wget"
-          ref: "v1.7.3"
         vision_groups:
           repo: "https://github.com/vision-it/vision-groups"
           ref: "origin/production"
