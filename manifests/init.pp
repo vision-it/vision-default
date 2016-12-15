@@ -42,7 +42,6 @@ class vision_default (
   }
 
   contain ::ruby
-  contain ::vision_editors::vim
   contain ::vision_groups
   contain ::vision_ntp
   contain ::vision_puppet::client
