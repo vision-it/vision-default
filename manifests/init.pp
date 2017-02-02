@@ -62,6 +62,8 @@ class vision_default (
   contain vision_default::files
   contain vision_default::facts
 
+  Package['zsh'] -> User['root']
+
   class { '::vision_shells::zsh':
     require => Class['vision_default::packages'],
   }
