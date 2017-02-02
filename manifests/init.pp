@@ -26,10 +26,6 @@ class vision_default (
   Optional[Array] $dns_nameservers = [],
   Optional[Array] $dns_search      = [],
 
-  Optional[String] $repo_url       = undef,
-  Optional[String] $repo_key       = undef,
-  Optional[String] $repo_keyid     = undef,
-
   Hash $default_packages           = { },
   Hash $sysctl_entries             = { },
   Hash $blacklist_kernel_modules   = { },
@@ -74,15 +70,6 @@ class vision_default (
       nameservers => $dns_nameservers,
       domainname  => $dns_domain,
       searchpath  => $dns_search
-    }
-  }
-
-  # Repository
-  if $repo_url {
-    class { 'vision_default::repository':
-      repo_key   => $repo_key,
-      repo_keyid => $repo_keyid,
-      repo_url   => $repo_url,
     }
   }
 

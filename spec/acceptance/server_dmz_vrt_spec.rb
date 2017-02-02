@@ -25,8 +25,6 @@ describe 'vision_default' do
          type          => 'server',
          dom0_hostname => 'beaker',
          eth0_ip       => '127.0.0.1',
-         repo_key      => 'foobar',
-         repo_keyid    => '9E3E53F19C7DE460',
          default_packages => { 'tmux' => {'ensure' => 'present'}},
          dns_cnames       => [],
          dns_nameservers  => [],
