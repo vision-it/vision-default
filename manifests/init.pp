@@ -38,6 +38,7 @@ class vision_default (
   }
 
   contain ::ruby
+  contain ::apt
   contain ::vision_groups
   contain ::vision_ntp
   contain ::vision_puppet::client
