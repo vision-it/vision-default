@@ -8,12 +8,17 @@ matrix:
     fast_finish: true
     include:
         - rvm: 2.1
-          env: PUPPET_VERSION="4.3" STRICT_VARIABLES="yes"
+          env: PUPPET_VERSION="4.5" STRICT_VARIABLES="yes"
           services: docker
           sudo: required
-          script: bundle exec rake beaker
+          script: bundle exec rake validate
         - rvm: 2.1
-          env: PUPPET_VERSION="4.5" STRICT_VARIABLES="no"
+          env: PUPPET_VERSION="4.5" STRICT_VARIABLES="yes"
+          services: docker
+          sudo: required
+          script: bundle exec rake lint
+        - rvm: 2.1
+          env: PUPPET_VERSION="4.6.1" STRICT_VARIABLES="yes"
           services: docker
           sudo: required
           script: bundle exec rake
