@@ -15,7 +15,7 @@
 
 class vision_default::ca (
 
-  String $location,
+  String $location = $vision_default::location,
 
 ) {
 

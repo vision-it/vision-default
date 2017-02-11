@@ -5,7 +5,10 @@ describe 'vision_default' do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
-        facts.merge({:fqdn => 'debian-test'})
+        facts.merge({
+                      :fqdn => 'debian-test',
+                      :ipaddress => '127.0.0.127'
+                    })
       end
 
       let :pre_condition do
@@ -44,6 +47,7 @@ describe 'vision_default' do
 
         let(:params) {{
                         :type => 'server',
+                        :backup_port => '2323',
                         :location => 'dmzVm'
                       }}
 
@@ -51,6 +55,29 @@ describe 'vision_default' do
         it { is_expected.to_not contain_class('vision_smart') }
         it { is_expected.to compile.with_all_deps }
         it { expect(exported_resources).to contain_host('debian-test')}
+
+        it {
+          is_expected.to contain_file('/opt/puppetlabs/facter/facts.d/backup_port.txt').with(
+                           'ensure'  => 'present',
+                           'content' => 'backup_port=2323',
+                         )
+        }
+
+      end
+
+      context 'Virtual Server DMZ calculate backup_port' do
+
+        let(:params) {{
+                        :type => 'server',
+                        :location => 'dmzVm'
+                      }}
+
+        it {
+          is_expected.to contain_file('/opt/puppetlabs/facter/facts.d/backup_port.txt').with(
+                           'ensure'  => 'present',
+                           'content' => 'backup_port=23127',
+                         )
+        }
 
       end
 

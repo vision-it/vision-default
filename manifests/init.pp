@@ -20,6 +20,7 @@ class vision_default (
   String $location                 = $::location,
   String $eth0_ip                  = $::ipaddress_eth0,
   Optional[String] $dom0_hostname  = $::dom0hostname,
+  Optional[String] $backup_port    = undef,
 
   Optional[String] $dns_domain     = undef,
   Optional[Array] $dns_cnames      = [],

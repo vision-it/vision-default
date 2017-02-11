@@ -19,6 +19,7 @@ describe 'vision_default' do
           class ruby () {}
 
         class { 'vision_default':
+         backup_port   => '4444',
          location      => 'dmzVm',
          type          => 'server',
          dom0_hostname => 'beaker',
@@ -75,8 +76,12 @@ describe 'vision_default' do
       it { should be_file }
       it { should contain 'server' }
     end
-  end
 
+    describe file('/opt/puppetlabs/facter/facts.d/backup_port.txt') do
+      it { should be_file }
+      it { should contain '4444' }
+    end
+  end
 
   context 'blacklist kernel modules' do
     describe file('/etc/modprobe.d/blacklist-floppy.conf') do
