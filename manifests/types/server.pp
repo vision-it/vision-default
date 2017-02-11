@@ -11,6 +11,7 @@
 class vision_default::types::server (
 
   Hash $blacklist_kernel_modules = $vision_default::blacklist_kernel_modules,
+  String $location               = $vision_default::location,
 
 ) {
 
@@ -20,7 +21,7 @@ class vision_default::types::server (
   contain ::vision_pki
 
   # Install SMART tests on all non-VMs (physical servers)
-  if ($::vision_default::location !~ '(?i:Vm|vrt)$') {
+  if ($location !~ '(?i:Vm|vrt)$') {
     contain ::vision_smart
   }
 
