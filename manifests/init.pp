@@ -59,6 +59,7 @@ class vision_default (
   # Files, directories and facts
   contain vision_default::files
   contain vision_default::facts
+  contain vision_default::ca
 
   Package['zsh'] -> User['root']
 
@@ -73,11 +74,6 @@ class vision_default (
       domainname  => $dns_domain,
       searchpath  => $dns_search
     }
-  }
-
-  # CA
-  class { 'vision_default::ca':
-    location => $location,
   }
 
   # Exported Resource
