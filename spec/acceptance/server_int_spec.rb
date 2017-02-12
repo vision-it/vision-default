@@ -19,7 +19,7 @@ describe 'vision_default' do
           class vision_puppet::client () {}
           class vision_ssh () {}
           class vision_ntp () {}
-          class vision_editors::vim () {}
+          class vision_firewall () {}
           class vision_rsyslog () {}
           class vision_pki () {}
           class vision_logcheck () {}
