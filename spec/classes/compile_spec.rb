@@ -7,7 +7,7 @@ describe 'vision_default' do
       let(:facts) do
         facts.merge({
                       :fqdn => 'debian-test',
-                      :ipaddress => '127.0.0.127'
+                      :ipaddress => '127.0.0.7'
                     })
       end
 
@@ -75,12 +75,11 @@ describe 'vision_default' do
         it {
           is_expected.to contain_file('/opt/puppetlabs/facter/facts.d/backup_port.txt').with(
                            'ensure'  => 'present',
-                           'content' => 'backup_port=23127',
+                           'content' => 'backup_port=2307',
                          )
         }
 
       end
-
 
       context 'Server DMZ' do
 
