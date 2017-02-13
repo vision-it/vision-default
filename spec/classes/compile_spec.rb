@@ -15,6 +15,7 @@ describe 'vision_default' do
         [
           'class vision_puppet::client () {}',
           'class vision_ssh () {}',
+          'class vision_icinga2 () {}',
           'class vision_pki () {}',
           'class vision_logcheck () {}',
           'class vision_apt::unattended_upgrades () {}',
