@@ -36,8 +36,7 @@ class vision_default::facts (
     if $backup_port == undef {
 
       $ip_array         = split($::ipaddress, '\.')
-      $ip_last_triple   = $ip_array[-1]
-      $calc_backup_port = "23${ip_last_triple}"
+      $calc_backup_port = sprintf('23%02d', $ip_array[-1])
 
       file { '/opt/puppetlabs/facter/facts.d/backup_port.txt':
         ensure  => present,
