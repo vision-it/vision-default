@@ -26,9 +26,9 @@ class vision_default::types::server (
     contain ::vision_smart
   }
 
-  # class { '::vision_firewall':
-  #   require => Class['vision_default::facts'],
-  # }
+  class { '::vision_firewall':
+    require => Class['vision_default::facts'],
+  }
 
   create_resources('vision_default::kernelmodule', $blacklist_kernel_modules)
 
