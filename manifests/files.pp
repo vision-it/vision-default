@@ -11,8 +11,7 @@
 # contain ::vision_default::files
 #
 
-class vision_default::files (
-){
+class vision_default::files {
 
   file { '/root/.ssh':
     ensure => directory,
@@ -28,6 +27,7 @@ class vision_default::files (
   file { '/opt':
     ensure => directory,
   }
+
 
 
 }

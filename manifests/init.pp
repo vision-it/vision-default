@@ -58,6 +58,7 @@ class vision_default (
     home           => '/root',
     purge_ssh_keys => true,
   }
+
   # Files, directories and facts
   contain vision_default::files
   contain vision_default::facts
@@ -98,4 +99,5 @@ class vision_default (
   }
 
   create_resources(sysctl, $sysctl_entries, $sysctl_defaults)
+
 }

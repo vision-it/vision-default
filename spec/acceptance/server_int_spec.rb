@@ -52,7 +52,7 @@ describe 'vision_default' do
 
   context 'example package installed' do
     describe package('tmux') do
-      it { should be_installed}
+      it { should be_installed }
     end
   end
 
@@ -90,5 +90,4 @@ describe 'vision_default' do
       it { should contain 'blacklist floppy' }
     end
   end
-
 end

@@ -26,7 +26,7 @@ describe 'vision_default' do
           'class vision_sudo () {}',
           'class vision_rsyslog () {}',
           'class vision_groups () {}',
-          'class ruby () {}',
+          'class ruby () {}'
         ]
       end
 
@@ -41,9 +41,7 @@ describe 'vision_default' do
         it { is_expected.to contain_class('vision_default::types::server') }
         it { is_expected.to_not contain_class('resolv_conf') }
         it { is_expected.to compile.with_all_deps }
-
       end
-
 
       context 'Virtual Server DMZ' do
 
@@ -64,7 +62,6 @@ describe 'vision_default' do
                            'content' => 'backup_port=2323',
                          )
         }
-
       end
 
       context 'Virtual Server DMZ calculate backup_port' do
@@ -80,7 +77,6 @@ describe 'vision_default' do
                            'content' => 'backup_port=2307',
                          )
         }
-
       end
 
       context 'Server DMZ' do
@@ -97,7 +93,6 @@ describe 'vision_default' do
         it { is_expected.to contain_class('vision_smart') }
         it { is_expected.to contain_class('resolv_conf') }
         it { is_expected.to compile.with_all_deps }
-
       end
 
       context 'Vagrant Development Server' do
@@ -110,7 +105,6 @@ describe 'vision_default' do
         it { is_expected.to contain_class('vision_default::types::server') }
         it { is_expected.to_not contain_class('vision_smart') }
         it { is_expected.to compile.with_all_deps }
-
       end
 
       context 'Desktop Int' do
@@ -123,9 +117,7 @@ describe 'vision_default' do
         it { is_expected.to contain_class('vision_default::types::desktop') }
         it { is_expected.to_not contain_class('vision_smart') }
         it { is_expected.to compile.with_all_deps }
-
       end
-
     end
   end
 end

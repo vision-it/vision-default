@@ -49,7 +49,7 @@ class vision_default::facts (
       file { '/opt/puppetlabs/facter/facts.d/backup_port.txt':
         ensure  => present,
         content => "backup_port=${backup_port}",
-        }
+      }
     }
   }
 
