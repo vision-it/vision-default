@@ -62,6 +62,17 @@ describe 'vision_default' do
     end
   end
 
+  context 'HPE repository enabled' do
+    describe file('/etc/apt/sources.list.d/hpe.list') do
+      it { is_expected.to exist }
+      its(:content) { is_expected.to match 'hpe.com' }
+      its(:content) { is_expected.to match 'jessie' }
+    end
+    describe package('hpacucli') do
+      it { should be_installed }
+    end
+  end
+
   context 'files provisioned' do
     describe file('/vision') do
       it { should be_directory }
