@@ -16,6 +16,7 @@ describe 'vision_default' do
           class vision_logcheck () {}
           class vision_exim () {}
           class vision_smart () {}
+          class vision_sudo () {}
           class vision_apt::unattended_upgrades () {}
           class ruby () {}
 

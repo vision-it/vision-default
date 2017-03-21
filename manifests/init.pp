@@ -45,6 +45,7 @@ class vision_default (
   contain ::vision_puppet::client
   contain ::vision_rsyslog
   contain ::vision_ssh
+  contain ::vision_sudo
 
   contain "::vision_default::types::${type}"
 
