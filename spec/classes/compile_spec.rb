@@ -23,6 +23,7 @@ describe 'vision_default' do
           'class vision_firewall () {}',
           'class vision_ntp () {}',
           'class vision_smart () {}',
+          'class vision_sudo () {}',
           'class vision_rsyslog () {}',
           'class vision_groups () {}',
           'class ruby () {}',
