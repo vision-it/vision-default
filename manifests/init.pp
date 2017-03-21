@@ -16,6 +16,11 @@
 
 class vision_default (
 
+  String $hp_repo_keyid,
+  String $hp_repo_keysource,
+  String $hp_repo_location,
+  String $hp_repo_release,
+
   String $type                     = $::nodetype,
   String $location                 = $::location,
   String $eth0_ip                  = $::ipaddress_eth0,
