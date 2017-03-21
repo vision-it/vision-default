@@ -46,6 +46,7 @@ class vision_default (
   contain ::vision_rsyslog
   contain ::vision_ssh
   contain ::vision_sudo
+  contain ::vision_apt::unattended_upgrades
 
   contain "::vision_default::types::${type}"
 

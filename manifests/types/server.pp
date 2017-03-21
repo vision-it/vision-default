@@ -15,7 +15,6 @@ class vision_default::types::server (
 
 ) {
 
-  contain ::vision_apt::unattended_upgrades
   contain ::vision_exim
   contain ::vision_icinga2
   contain ::vision_logcheck
