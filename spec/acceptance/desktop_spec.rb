@@ -1,7 +1,6 @@
 require 'spec_helper_acceptance'
 
 describe 'vision_default' do
-
   context 'Desktop Int' do
     it 'should idempotently run' do
       pp = <<-EOS
@@ -21,6 +20,11 @@ describe 'vision_default' do
           class vision_apt::unattended_upgrades () {}
 
           class ruby () {}
+
+          # For Bash Lint
+          package{'shellcheck':
+            ensure => present,
+          }
 
           group { 'vision-it':
             ensure => present,
@@ -47,7 +51,7 @@ describe 'vision_default' do
 
   context 'example package installed' do
     describe package('tmux') do
-      it { should be_installed}
+      it { should be_installed }
     end
   end
 
@@ -63,6 +67,16 @@ describe 'vision_default' do
     describe file('/root/.ssh') do
       it { should be_directory }
       it { should be_mode 700 }
+    end
+  end
+
+  context 'xrandr.sh lint' do
+    describe package('shellcheck') do
+      it { should be_installed }
+    end
+
+    describe command('/usr/bin/shellcheck //usr/local/bin/xrandr.sh') do
+      its(:exit_status) { should eq 0 }
     end
   end
 
@@ -84,8 +98,8 @@ describe 'vision_default' do
 
   context 'Sysctl entries' do
     it 'should have applied successfully the inotify.max_user_watches entry' do
-        result = on(default, 'sysctl -n fs.inotify.max_user_watches').stdout.strip
-        expect(result).to eql('500000')
+      result = on(default, 'sysctl -n fs.inotify.max_user_watches').stdout.strip
+      expect(result).to eql('500000')
     end
   end
 end
