@@ -11,12 +11,12 @@
 class vision_default::types::server (
 
   Hash $blacklist_kernel_modules = $vision_default::blacklist_kernel_modules,
-  String $manufacturer           = $vision_default::manufacturer,
   String $location               = $vision_default::location,
   String $hp_repo_keyid          = $vision_default::hp_repo_keyid,
   String $hp_repo_keysource      = $vision_default::hp_repo_keysource,
   String $hp_repo_location       = $vision_default::hp_repo_location,
   String $hp_repo_release        = $vision_default::hp_repo_release,
+  Optional[String] $manufacturer = $vision_default::manufacturer,
 
 ) {
 
