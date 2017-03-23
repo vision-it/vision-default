@@ -33,6 +33,7 @@ describe 'vision_default' do
         class { 'vision_default':
          location      => 'int',
          type          => 'desktop',
+         manufacturer  => 'Something',
          dom0_hostname => 'beaker',
          eth0_ip       => '127.0.0.1',
          default_packages => { 'tmux' => {'ensure' => 'present'}},

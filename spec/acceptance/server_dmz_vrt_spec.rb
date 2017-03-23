@@ -23,6 +23,7 @@ describe 'vision_default' do
         class { 'vision_default':
          backup_port   => '4444',
          location      => 'dmzVm',
+         manufacturer  => 'Something',
          type          => 'server',
          dom0_hostname => 'beaker',
          eth0_ip       => '127.0.0.1',

@@ -11,6 +11,7 @@
 class vision_default::types::server (
 
   Hash $blacklist_kernel_modules = $vision_default::blacklist_kernel_modules,
+  String $manufacturer           = $vision_default::manufacturer,
   String $location               = $vision_default::location,
   String $hp_repo_keyid          = $vision_default::hp_repo_keyid,
   String $hp_repo_keysource      = $vision_default::hp_repo_keysource,
@@ -36,19 +37,24 @@ class vision_default::types::server (
     # Smartctl
     contain ::vision_smart
 
-    # HP Repository
-    apt::key { 'hpe.com':
-      id     => $hp_repo_keyid,
-      source => $hp_repo_keysource,
-    }->
-    apt::source { 'hpe':
-      location => $hp_repo_location,
-      key      => $hp_repo_keyid,
-      release  => $hp_repo_release,
-      repos    => 'non-free',
-    }->
-    package { 'hpacucli':
-      ensure => 'present',
+    if ($manufacturer == 'HP') {
+
+      # HP Repository
+      apt::key { 'hpe.com':
+        id     => $hp_repo_keyid,
+        source => $hp_repo_keysource,
+        }->
+        apt::source { 'hpe':
+          location => $hp_repo_location,
+          key      => $hp_repo_keyid,
+          release  => $hp_repo_release,
+          repos    => 'non-free',
+          }->
+          package { 'hpacucli':
+            ensure  => 'present',
+            require => Apt::Source['hpe'],
+          }
+
     }
 
   }

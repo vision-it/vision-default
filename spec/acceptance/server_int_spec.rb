@@ -34,6 +34,7 @@ describe 'vision_default' do
        class { 'vision_default':
          location      => 'int',
          type          => 'server',
+         manufacturer  => 'HP',
          dom0_hostname => 'beaker',
          eth0_ip       => '127.0.0.1',
          default_packages => { 'tmux' => {'ensure' => 'present'}},

@@ -23,6 +23,7 @@ class vision_default (
 
   String $type                     = $::nodetype,
   String $location                 = $::location,
+  String $manufacturer             = $::manufacturer,
   String $eth0_ip                  = $::ipaddress_eth0,
   Optional[String] $dom0_hostname  = $::dom0hostname,
   Optional[String] $backup_port    = undef,
