@@ -37,6 +37,13 @@ class vision_default::types::server (
     # Smartctl
     contain ::vision_smart
 
+
+    if ($manufacturer == 'Supermicro') {
+      package { 'ipmitool':
+        ensure  => 'present',
+      }
+    }
+
     if ($manufacturer == 'HP') {
 
       # HP Repository
