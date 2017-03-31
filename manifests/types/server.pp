@@ -50,17 +50,17 @@ class vision_default::types::server (
       apt::key { 'hpe.com':
         id     => $hp_repo_keyid,
         source => $hp_repo_keysource,
-        }->
-        apt::source { 'hpe':
-          location => $hp_repo_location,
-          key      => $hp_repo_keyid,
-          release  => $hp_repo_release,
-          repos    => 'non-free',
-          }->
-          package { 'hpacucli':
-            ensure  => 'present',
-            require => Apt::Source['hpe'],
-          }
+      }
+      -> apt::source { 'hpe':
+        location => $hp_repo_location,
+        key      => $hp_repo_keyid,
+        release  => $hp_repo_release,
+        repos    => 'non-free',
+      }
+      -> package { 'hpacucli':
+        ensure  => 'present',
+        require => Apt::Source['hpe'],
+      }
 
     }
 
