@@ -20,6 +20,7 @@ describe 'vision_default' do
           class vision_ssh () {}
           class vision_ntp () {}
           class vision_firewall () {}
+          class vision_bareos () {}
           class vision_icinga2 () {}
           class vision_rsyslog () {}
           class vision_pki () {}
