@@ -1,0 +1,5 @@
+# This file is managed by Puppet.
+
+<% @backup_paths.each do |path| -%>
+File = <%= path %>
+<% end -%>

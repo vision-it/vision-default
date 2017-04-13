@@ -33,6 +33,8 @@ class vision_default (
   Optional[Array] $dns_nameservers = [],
   Optional[Array] $dns_search      = [],
 
+  Optional[Array] $backup_paths    = [],
+
   Hash $default_packages           = { },
   Hash $sysctl_entries             = { },
   Hash $blacklist_kernel_modules   = { },
