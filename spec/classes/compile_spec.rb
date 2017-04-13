@@ -18,6 +18,7 @@ describe 'vision_default' do
           'class vision_icinga2 () {}',
           'class vision_pki () {}',
           'class vision_logcheck () {}',
+          'class vision_bareos () {}',
           'class vision_apt::unattended_upgrades () {}',
           'class vision_exim () {}',
           'class vision_firewall () {}',
