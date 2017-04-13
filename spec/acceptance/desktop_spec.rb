@@ -61,6 +61,14 @@ describe 'vision_default' do
       it { should be_directory }
     end
 
+    describe file('/vision/backup-fileset') do
+      it { is_expected.to exist }
+      its(:content) { is_expected.to match 'etc' }
+      its(:content) { is_expected.to match 'opt' }
+      its(:content) { is_expected.to match 'vision' }
+      its(:content) { is_expected.to match 'root' }
+    end
+
     describe file('/opt') do
       it { should be_directory }
     end

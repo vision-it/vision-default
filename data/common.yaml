@@ -4,11 +4,22 @@ vision_default::hp_repo_keysource: "http://downloads.linux.hpe.com/SDR/hpePublic
 vision_default::hp_repo_location: "http://downloads.linux.hpe.com/SDR/repo/mcp"
 vision_default::hp_repo_release: "jessie/current"
 vision_default::type: 'server'
+
 vision_default::blacklist_kernel_modules:
   floppy:
     ensure: present
+
+vision_default::backup_paths:
+  - '/etc'
+  - '/root'
+  - '/opt'
+  - '/vision'
+
 lookup_options:
   vision_default::default_packages:
     merge:
       strategy: deep
       merge_hash_arrays: true
+  # vision_default::backup_paths:
+  #   merge:
+  #     strategy: deep
