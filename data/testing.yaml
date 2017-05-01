@@ -1,0 +1,14 @@
+---
+vision_default::location: 'dmz'
+vision_default::eth0_ip: '127.0.0.1'
+vision_default::dom0_hostname: 'beaker'
+vision_default::repo_key: 'foobar'
+vision_default::repo_url: 'locahost'
+vision_default::repo_keyid: '9E3E53F19C7DE460'
+vision_default::dns_domain: 'beaker'
+vision_default::default_packages:
+  tmux:
+    ensure: present
+vision_default::sysctl_entries:
+  fs.inotify.max_user_watches:
+    value: 524288
