@@ -25,7 +25,10 @@ describe 'vision_default' do
           'class vision_sudo () {}',
           'class vision_rsyslog () {}',
           'class vision_groups () {}',
-          'class ruby () {}'
+          'class ruby () {}',
+          'class vision_shells::zsh () {}',
+          'package {"zsh": ensure => installed}',
+          'realize User["root"]'
         ]
       end
 
