@@ -26,7 +26,7 @@ class vision_default (
   String $location                 = $::location,
   String $fqdn                     = $::fqdn,
   String $hostname                 = $::hostname,
-  String $eth0_ip                  = $::ipaddress_eth0,
+  Optional[String] $eth0_ip        = $::ipaddress_eth0,
   Optional[String] $manufacturer   = $::manufacturer,
   Optional[String] $dom0_hostname  = $::dom0hostname,
   Optional[String] $backup_port    = undef,
