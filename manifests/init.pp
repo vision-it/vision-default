@@ -91,8 +91,10 @@ class vision_default (
   }
 
   # Hostsfile
-  resources { 'host':
-    purge => true
+  if $location != 'vrt' {
+    resources { 'host':
+      purge => true
+    }
   }
 
   host { $fqdn:
