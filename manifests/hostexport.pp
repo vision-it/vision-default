@@ -24,18 +24,14 @@ class vision_default::hostexport (
 
 ) {
 
-  if $location =~ /(dmz|int)Vm/ {
+  $cnames = flatten([$hostname, $fqdn, $dns_cnames])
 
-    $cnames = flatten([$hostname, $fqdn, $dns_cnames])
-
-    @@host { "${hostname}-vm":
-      ensure       => present,
-      comment      => "Virtualized Member of ${location}",
-      host_aliases => $cnames,
-      ip           => $eth0_ip,
-      tag          => $dom0_hostname,
-    }
-
+  @@host { "${hostname}-vm":
+    ensure       => present,
+    comment      => "Virtualized Member of ${location}",
+    host_aliases => $cnames,
+    ip           => $eth0_ip,
+    tag          => $dom0_hostname,
   }
 
 }

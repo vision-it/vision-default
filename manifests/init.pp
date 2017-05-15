@@ -103,7 +103,10 @@ class vision_default (
   }
 
   create_resources('host', $hosts)
-  contain vision_default::hostexport
+
+  if $location =~ /(dmz|int)Vm/ {
+    contain vision_default::hostexport
+  }
 
   # Sysctl
   $sysctl_defaults = {
