@@ -98,6 +98,9 @@ describe 'vision_default' do
 
   context 'Desktop files provisioned' do
     describe file('/usr/local/bin/xrandr.sh') do
+      its(:content) { is_expected.to match 'mypc' }
+      its(:content) { is_expected.to match 'VGA-1' }
+      its(:content) { is_expected.to match 'managed by puppet' }
       it { is_expected.to be_file }
       it { is_expected.to be_mode 775 }
       it { is_expected.to be_owned_by 'root' }

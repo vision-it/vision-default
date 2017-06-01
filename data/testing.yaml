@@ -12,3 +12,6 @@ vision_default::default_packages:
 vision_default::sysctl_entries:
   fs.inotify.max_user_watches:
     value: 524288
+vision_default::monitor_setup:
+  mypc:
+    xrandr: "xrandr --output 'DVI-I-1' --auto --left-of 'VGA-1'"

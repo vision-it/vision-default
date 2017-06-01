@@ -41,6 +41,7 @@ class vision_default (
   Hash $default_packages           = { },
   Hash $sysctl_entries             = { },
   Hash $blacklist_kernel_modules   = { },
+  Hash $monitor_setup              = { },
 
 ) {
 
