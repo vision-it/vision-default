@@ -18,6 +18,7 @@ describe 'vision_default' do
           class vision_smart () {}
           class vision_sudo () {}
           class vision_apt::unattended_upgrades () {}
+          class vision_zile () {}
           class ruby () {}
 
         class { 'vision_default':

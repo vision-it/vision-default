@@ -25,6 +25,7 @@ class vision_default::types::server (
   contain ::vision_icinga2
   contain ::vision_logcheck
   contain ::vision_pki
+  contain ::vision_zile
 
   class { '::vision_firewall':
     require => Class['vision_default::facts'],
@@ -37,7 +38,6 @@ class vision_default::types::server (
 
     # Smartctl
     contain ::vision_smart
-
 
     if ($manufacturer == 'Supermicro') {
       package { 'ipmitool':
