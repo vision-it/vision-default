@@ -5,21 +5,20 @@ describe 'vision_default' do
     it 'idempotentlies run' do
       pp = <<-EOS
 
-          class vision_puppet::client () {}
-          class vision_ssh () {}
-          class vision_ntp () {}
-          class vision_icinga2 () {}
-          class vision_firewall () {}
-          class vision_rsyslog () {}
-          class vision_pki () {}
-          class vision_logcheck () {}
-          class vision_exim () {}
-          class vision_munin () {}
-          class vision_smart () {}
-          class vision_sudo () {}
-          class vision_apt::unattended_upgrades () {}
-
           class ruby () {}
+          class vision_apt::unattended_upgrades () {}
+          class vision_exim () {}
+          class vision_firewall () {}
+          class vision_icinga2 () {}
+          class vision_logcheck () {}
+          class vision_munin () {}
+          class vision_ntp () {}
+          class vision_pki () {}
+          class vision_puppet::client () {}
+          class vision_rsyslog () {}
+          class vision_smart () {}
+          class vision_ssh () {}
+          class vision_sudo () {}
 
           # For Bash Lint
           package{'shellcheck':

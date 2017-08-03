@@ -5,8 +5,10 @@ describe 'vision_default' do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
-        facts.merge(fqdn: 'debian-test',
-                    ipaddress: '127.0.0.7')
+        facts.merge(
+          fqdn: 'debian-test',
+          ipaddress: '127.0.0.7'
+        )
       end
 
       let :pre_condition do
@@ -14,6 +16,7 @@ describe 'vision_default' do
           'class ruby () {}',
           'class vision_apt::unattended_upgrades () {}',
           'class vision_bareos () {}',
+          'class vision_editors::zile () {}',
           'class vision_exim () {}',
           'class vision_firewall () {}',
           'class vision_groups () {}',
@@ -27,7 +30,6 @@ describe 'vision_default' do
           'class vision_smart () {}',
           'class vision_ssh () {}',
           'class vision_sudo () {}',
-          'class vision_zile () {}',
           'package {"zsh": ensure => installed}',
           'realize User["root"]'
         ]
