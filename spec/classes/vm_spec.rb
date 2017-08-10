@@ -30,6 +30,7 @@ describe 'vision_default' do
           'class vision_smart () {}',
           'class vision_ssh () {}',
           'class vision_sudo () {}',
+          'class vision_default::hostexport () {}',
           'package {"zsh": ensure => installed}',
           'realize User["root"]'
         ]
@@ -45,6 +46,7 @@ describe 'vision_default' do
         end
 
         it { is_expected.to contain_class('vision_default::types::server') }
+        it { is_expected.to contain_class('vision_default::hostexport') }
         it { is_expected.not_to contain_class('vision_smart') }
         it { is_expected.to compile.with_all_deps }
 
