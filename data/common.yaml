@@ -2,7 +2,6 @@
 vision_default::hp_repo_keyid: "57446EFDE098E5C934B69C7DC208ADDE26C2B797"
 vision_default::hp_repo_keysource: "http://downloads.linux.hpe.com/SDR/hpePublicKey2048_key1.pub"
 vision_default::hp_repo_location: "http://downloads.linux.hpe.com/SDR/repo/mcp"
-vision_default::hp_repo_release: "jessie/current"
 vision_default::type: 'server'
 
 vision_default::blacklist_kernel_modules:

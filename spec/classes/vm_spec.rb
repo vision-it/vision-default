@@ -40,6 +40,7 @@ describe 'vision_default' do
         let(:params) do
           {
             type: 'server',
+            codename: 'jessie',
             backup_port: '2323',
             location: 'dmzVm'
           }
@@ -62,6 +63,7 @@ describe 'vision_default' do
         let(:params) do
           {
             type: 'server',
+            codename: 'jessie',
             location: 'dmzVm'
           }
         end

@@ -58,7 +58,7 @@ class vision_default::types::server (
         release  => $hp_repo_release,
         repos    => 'non-free',
       }
-      -> package { 'hpacucli':
+      -> package { 'ssacli':
         ensure  => 'present',
         require => Apt::Source['hpe'],
       }

@@ -39,7 +39,8 @@ describe 'vision_default' do
         let(:params) do
           {
             type: 'server',
-            location: 'int'
+            location: 'int',
+            codename: 'jessie'
           }
         end
 
@@ -54,6 +55,7 @@ describe 'vision_default' do
           {
             type: 'server',
             location: 'dmz',
+            codename: 'jessie',
             dns_domain: 'foobar',
             dns_cnames: [],
             dns_nameservers: ['127.0.0.1']
@@ -70,6 +72,7 @@ describe 'vision_default' do
         let(:params) do
           {
             type: 'server',
+            codename: 'jessie',
             location: 'vrt'
           }
         end
@@ -83,6 +86,7 @@ describe 'vision_default' do
         let(:params) do
           {
             type: 'desktop',
+            codename: 'jessie',
             location: 'int'
           }
         end
