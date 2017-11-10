@@ -13,17 +13,11 @@
 
 class vision_default::facts (
 
-  String $tier                  = hiera('applicationtier', 'production'),
-  String $type                  = hiera('nodetype', 'server'),
+  String $type                  = lookup('nodetype', String, 'first','server'),
   Optional[String] $backup_port = $vision_default::backup_port,
   String $location              = $vision_default::location,
 
 ){
-
-  file { '/opt/puppetlabs/facter/facts.d/applicationtier.txt':
-    ensure  => present,
-    content => "applicationtier=${tier}",
-  }
 
   file { '/opt/puppetlabs/facter/facts.d/nodetype.txt':
     ensure  => present,

@@ -83,11 +83,6 @@ describe 'vision_default' do
   end
 
   context 'facts provisioned' do
-    describe file('/opt/puppetlabs/facter/facts.d/applicationtier.txt') do
-      it { is_expected.to be_file }
-      it { is_expected.to contain 'production' }
-    end
-
     describe file('/opt/puppetlabs/facter/facts.d/nodetype.txt') do
       it { is_expected.to be_file }
       it { is_expected.to contain 'server' }

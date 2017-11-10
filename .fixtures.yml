@@ -8,7 +8,7 @@ fixtures:
       ref: "v3.0.5"
       repo: "https://github.com/saz/puppet-resolv_conf"
     apt:
-      ref: "2.4.0"
+      ref: "4.2.0"
       repo: "https://github.com/puppetlabs/puppetlabs-apt"
     vision_shells:
       ref: "origin/production"
