@@ -25,7 +25,7 @@ class vision_default (
   String $location                 = $::location,
   String $fqdn                     = $::fqdn,
   String $hostname                 = $::hostname,
-  String $codename                 = $::os[distro][codename],
+  String $codename                 = $::lsbdistcodename,
   String $hp_repo_release          = "${codename}/current",
   Optional[String] $eth0_ip        = $::ipaddress_eth0,
   Optional[String] $manufacturer   = $::manufacturer,
