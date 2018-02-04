@@ -34,6 +34,18 @@ class vision_default::files (
     require => File['/vision'],
   }
 
+  # for application data storaged, backed up, replicated
+  file { '/vision/data':
+    ensure  => directory,
+    require => File['/vision'],
+  }
+
+  # for application configuration, not backed up, replicated
+  file { '/vision/etc':
+    ensure  => directory,
+    require => File['/vision'],
+  }
+
   file { '/opt':
     ensure => directory,
   }
