@@ -31,6 +31,7 @@ class vision_default (
   Optional[String] $manufacturer   = $::manufacturer,
   Optional[String] $dom0_hostname  = $::dom0hostname,
   Optional[String] $backup_port    = undef,
+  Optional[String] $ssh_port       = undef,
 
   Optional[String] $dns_domain     = undef,
   Optional[Array] $dns_cnames      = [],

@@ -42,6 +42,7 @@ describe 'vision_default' do
             type: 'server',
             codename: 'jessie',
             backup_port: '2323',
+            ssh_port: '2424',
             location: 'dmzVm'
           }
         end
@@ -57,6 +58,13 @@ describe 'vision_default' do
                            'content' => 'backup_port=2323'
                          )
         end
+
+        it do
+          is_expected.to contain_file('/opt/puppetlabs/facter/facts.d/ssh_port.txt').with(
+                           'ensure'  => 'present',
+                           'content' => 'ssh_port=2424'
+                         )
+        end
       end
 
       context 'Virtual Server DMZ calculate backup_port' do
@@ -66,6 +74,13 @@ describe 'vision_default' do
             codename: 'jessie',
             location: 'dmzVm'
           }
+        end
+
+        it do
+          is_expected.to contain_file('/opt/puppetlabs/facter/facts.d/ssh_port.txt').with(
+                           'ensure'  => 'present',
+                           'content' => 'ssh_port=2407'
+                         )
         end
 
         it do

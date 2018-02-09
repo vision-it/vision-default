@@ -23,6 +23,7 @@ describe 'vision_default' do
 
         class { 'vision_default':
          backup_port   => '4444',
+         ssh_port      => '5555',
          location      => 'dmzVm',
          manufacturer  => 'Something',
          type          => 'server',
@@ -86,6 +87,11 @@ describe 'vision_default' do
     describe file('/opt/puppetlabs/facter/facts.d/nodetype.txt') do
       it { is_expected.to be_file }
       it { is_expected.to contain 'server' }
+    end
+
+    describe file('/opt/puppetlabs/facter/facts.d/ssh_port.txt') do
+      it { is_expected.to be_file }
+      it { is_expected.to contain '5555' }
     end
 
     describe file('/opt/puppetlabs/facter/facts.d/backup_port.txt') do
