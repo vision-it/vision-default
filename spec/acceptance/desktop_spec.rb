@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 describe 'vision_default' do
   context 'Desktop Int' do
     it 'idempotentlies run' do
-      pp = <<-EOS
+      pp = <<-FILE
 
           class ruby () {}
           class vision_apt::unattended_upgrades () {}
@@ -42,7 +42,7 @@ describe 'vision_default' do
          dns_search       => [],
          dns_domain       => 'beaker',
         }
-      EOS
+      FILE
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)

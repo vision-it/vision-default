@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 describe 'vision_default' do
   context 'Server DMZ' do
     it 'idempotentlies run' do
-      pp = <<-EOS
+      pp = <<-FILE
 
           class ruby () {}
           class vision_apt::unattended_upgrades () {}
@@ -38,7 +38,7 @@ describe 'vision_default' do
          dns_domain       => 'beaker',
          blacklist_kernel_modules => { 'floppy' => {'ensure' => 'present'}},
         }
-      EOS
+      FILE
 
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
