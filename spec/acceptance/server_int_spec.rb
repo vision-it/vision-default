@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 describe 'vision_default' do
   context 'Server Int' do
     it 'idempotentlies run' do
-      pre = <<-EOS
+      pre = <<-FILE
           file { '/root/.ssh/authorized_keys':
             ensure => present,
           }->
@@ -12,8 +12,8 @@ describe 'vision_default' do
             path   => '/root/.ssh/authorized_keys',
             line   => 'ssh-rsa THISLINESHOULDBEREMOVED',
           }
-      EOS
-      pp = <<-EOS
+      FILE
+      pp = <<-FILE
 
           class ruby () {}
           class vision_apt::unattended_upgrades () {}
@@ -43,7 +43,7 @@ describe 'vision_default' do
          dns_search       => [],
          dns_domain       => 'beaker',
         }
-      EOS
+      FILE
 
       apply_manifest(pre, catch_failures: true)
       apply_manifest(pp, catch_failures: true)
