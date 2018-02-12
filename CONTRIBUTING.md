@@ -19,8 +19,7 @@ $ bundle exec rake
 Sometime the nokogiri Gem causes some issues with Bundle.
 
 ```
-$ apt-get install libxml2-dev install libxslt-dev
-$ gem install nokogiri
+$ apt-get install libxml2-dev libxslt-dev pkg-config
 $ bundle config build.nokogiri --use-system-libraries
 ```
 
