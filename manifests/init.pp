@@ -40,6 +40,8 @@ class vision_default (
 
   Optional[Array] $backup_paths    = [],
 
+  Boolean $masterless              = false,
+
   Hash $default_packages           = { },
   Hash $sysctl_entries             = { },
   Hash $blacklist_kernel_modules   = { },
@@ -56,11 +58,16 @@ class vision_default (
   contain ::apt
   contain ::vision_groups
   contain ::vision_ntp
-  contain ::vision_puppet::client
   contain ::vision_rsyslog
   contain ::vision_ssh
   contain ::vision_sudo
   contain ::vision_apt::unattended_upgrades
+
+  if $masterless {
+    contain ::vision_puppet::masterless
+  } else {
+    contain ::vision_puppet::client
+  }
 
   contain "::vision_default::types::${type}"
 
