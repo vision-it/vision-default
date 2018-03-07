@@ -56,6 +56,14 @@ describe 'vision_default' do
       it { is_expected.to be_directory }
     end
 
+    describe file('/vision/etc') do
+      it { is_expected.to be_directory }
+    end
+
+    describe file('/vision/data') do
+      it { is_expected.to be_directory }
+    end
+
     describe file('/opt') do
       it { is_expected.to be_directory }
     end
