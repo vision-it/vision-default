@@ -15,7 +15,7 @@ case $(hostname) in
         # landscape
         # xrandr --auto --output 'DP1' --mode '1920x1200' --output 'HDMI2' --right-of 'DP1' --mode '1600x1200'
         # portrait
-        xrandr --auto --output 'DP1' --mode '1920x1200' --rotate 'left' --output 'HDMI2' --right-of 'DP1' --mode '1680x1050'
+        xrandr --auto --output 'DP-1' --mode '1920x1200' --rotate 'left' --output 'HDMI-2' --right-of 'DP-1' --mode '1680x1050'
         ;;
     "ux1105")
         xrandr --auto --output 'DVI-I-1' --mode '1920x1200' --left-of 'HDMI-1' --mode '1920x1200'
