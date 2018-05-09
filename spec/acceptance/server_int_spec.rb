@@ -113,6 +113,17 @@ describe 'vision_default' do
     end
   end
 
+  context 'unattended upgrades' do
+    describe file('/etc/apt/apt.conf.d/50unattended-upgrades') do
+      it { is_expected.to be_file }
+      it { is_expected.to contain 'label=Debian-Security' }
+      it { is_expected.to contain 'Reboot "false"' }
+    end
+    describe package('unattended-upgrades') do
+      it { is_expected.to be_installed }
+    end
+  end
+
   context 'blacklist kernel modules' do
     describe file('/etc/modprobe.d/blacklist-floppy.conf') do
       it { is_expected.to be_file }

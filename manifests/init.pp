@@ -61,7 +61,7 @@ class vision_default (
   contain ::vision_rsyslog
   contain ::vision_ssh
   contain ::vision_sudo
-  contain ::vision_apt::unattended_upgrades
+  contain ::unattended_upgrades
 
   if $masterless {
     contain ::vision_puppet::masterless
