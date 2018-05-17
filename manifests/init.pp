@@ -27,7 +27,7 @@ class vision_default (
   String $hostname                 = $::hostname,
   String $codename                 = $::lsbdistcodename,
   String $hp_repo_release          = "${codename}/current",
-  Optional[String] $eth0_ip        = $::ipaddress_eth0,
+  Optional[String] $ip             = $::ipaddress,
   Optional[String] $manufacturer   = $::manufacturer,
   Optional[String] $dom0_hostname  = $::dom0hostname,
   Optional[String] $backup_port    = undef,
@@ -108,7 +108,7 @@ class vision_default (
   }
 
   host { $fqdn:
-    ip           => $eth0_ip,
+    ip           => $ip,
     host_aliases => $hostname,
   }
 
