@@ -12,7 +12,7 @@ describe 'vision_default::hostexport' do
         let(:params) do
           {
             fqdn: 'debian-test',
-            eth0_ip: '127.0.0.7',
+            ip: '127.0.0.7',
             dom0_hostname: 'beaker',
             hostname: 'beaker',
             location: 'dmzVm',

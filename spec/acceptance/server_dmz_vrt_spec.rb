@@ -30,7 +30,7 @@ describe 'vision_default' do
          dom0_hostname => 'beaker',
          hostname      => 'hostname',
          fqdn          => 'beaker',
-         eth0_ip       => '127.0.0.1',
+         ip            => '127.0.0.1',
          default_packages => { 'tmux' => {'ensure' => 'present'}},
          dns_cnames       => [],
          dns_nameservers  => [],

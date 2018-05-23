@@ -36,7 +36,7 @@ describe 'vision_default' do
          type          => 'server',
          manufacturer  => 'HP',
          dom0_hostname => 'beaker',
-         eth0_ip       => '127.0.0.1',
+         ip            => '127.0.0.1',
          default_packages => { 'tmux' => {'ensure' => 'present'}},
          dns_cnames       => [],
          dns_nameservers  => [],

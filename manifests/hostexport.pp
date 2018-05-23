@@ -18,7 +18,7 @@ class vision_default::hostexport (
   String $location                 = $vision_default::location,
   String $fqdn                     = $vision_default::fqdn,
   String $hostname                 = $vision_default::hostname,
-  String $eth0_ip                  = $vision_default::eth0_ip,
+  String $ip                       = $vision_default::ip,
   Optional[String] $dom0_hostname  = $vision_default::dom0_hostname,
   Optional[Array] $dns_cnames      = $vision_default::dns_cnames,
 
@@ -30,7 +30,7 @@ class vision_default::hostexport (
     ensure       => present,
     comment      => "Virtualized Member of ${location}",
     host_aliases => $cnames,
-    ip           => $eth0_ip,
+    ip           => $ip,
     tag          => $dom0_hostname,
   }
 
