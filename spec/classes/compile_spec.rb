@@ -26,7 +26,6 @@ describe 'vision_default' do
           'class vision_pki () {}',
           'class vision_puppet::client () {}',
           'class vision_rsyslog () {}',
-          'class vision_shells::zsh () {}',
           'class vision_smart () {}',
           'class vision_ssh () {}',
           'class vision_sudo () {}',

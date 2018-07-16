@@ -121,4 +121,35 @@ describe 'vision_default' do
       expect(result).to eql('500000')
     end
   end
+
+  context 'zsh provisioned' do
+    describe package('zsh') do
+      it { is_expected.to be_installed }
+    end
+
+    describe file('/root/.zshrc') do
+      it { is_expected.to contain 'DISABLE_AUTO_UPDATE="true"' }
+      it { is_expected.to be_mode 644 }
+    end
+
+    describe file('/root/.oh-my-zsh') do
+      it { is_expected.to be_directory }
+    end
+
+    describe file('/root/.oh-my-zsh/custom/puppet.zsh') do
+      it { is_expected.to be_file }
+      it { is_expected.to contain 'This file is managed by puppet' }
+    end
+
+    describe file('/root/.oh-my-zsh/custom/path.zsh') do
+      it { is_expected.to be_file }
+      it { is_expected.to contain '/opt/puppetlabs' }
+    end
+
+    describe file('/root/.oh-my-zsh/custom/aliases.zsh') do
+      it { is_expected.to be_file }
+      it { is_expected.to contain 'This file is managed by Puppet' }
+      it { is_expected.to contain "alias e='zile" }
+    end
+  end
 end

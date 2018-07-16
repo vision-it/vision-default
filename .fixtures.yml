@@ -13,12 +13,6 @@ fixtures:
     unattended_upgrades:
       ref: "v3.1.0"
       repo: "https://github.com/voxpupuli/puppet-unattended_upgrades"
-    ohmyzsh:
-      ref: "v1.0.4"
-      repo: "https://github.com/zanloy/puppet-ohmyzsh"
-    vision_shells:
-      ref: "origin/production"
-      repo: "https://github.com/vision-it/vision-shells"
     vision_groups:
       repo: "https://github.com/vision-it/vision-groups"
       ref: "origin/production"
