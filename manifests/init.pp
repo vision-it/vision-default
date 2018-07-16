@@ -47,7 +47,14 @@ class vision_default (
   Hash $blacklist_kernel_modules   = { },
   Hash $monitor_setup              = { },
 
-) {
+  ) {
+
+  # Ensure order of execution
+  Class['apt']
+  ->Class['vision_default::packages']
+
+  Class['vision_default::zsh']
+  ->User['root']
 
   # Packages
   class { 'vision_default::packages':
@@ -75,6 +82,7 @@ class vision_default (
     ensure         => present,
     home           => '/root',
     purge_ssh_keys => true,
+    shell          => '/usr/bin/zsh',
   }
 
   # Files, directories and facts

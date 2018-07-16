@@ -151,5 +151,11 @@ describe 'vision_default' do
       it { is_expected.to contain 'This file is managed by Puppet' }
       it { is_expected.to contain "alias e='zile" }
     end
+
+    context 'default shell for user root' do
+      describe file('/etc/passwd') do
+        it { is_expected.to contain '/root:/usr/bin/zsh' }
+      end
+    end
   end
 end
