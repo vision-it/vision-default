@@ -47,7 +47,14 @@ class vision_default (
   Hash $blacklist_kernel_modules   = { },
   Hash $monitor_setup              = { },
 
-) {
+  ) {
+
+  # Ensure order of execution
+  Class['apt']
+  ->Class['vision_default::packages']
+
+  Class['vision_default::zsh']
+  ->User['root']
 
   # Packages
   class { 'vision_default::packages':
@@ -71,25 +78,18 @@ class vision_default (
 
   contain "::vision_default::types::${type}"
 
-  # the user is virtualized, and later realized via the ohmyzsh module
-  # this is not the best solution but preventing a duplicate resource
-  # declaration and it's allowing us to
-  @user { 'root':
+  user { 'root':
     ensure         => present,
     home           => '/root',
     purge_ssh_keys => true,
+    shell          => '/usr/bin/zsh',
   }
 
   # Files, directories and facts
   contain vision_default::files
   contain vision_default::facts
   contain vision_default::ca
-
-  Package['zsh'] -> User['root']
-
-  class { '::vision_shells::zsh':
-    require => Class['vision_default::packages'],
-  }
+  contain vision_default::zsh
 
   # /etc/resolv.conf
   if $location == 'dmz' {
