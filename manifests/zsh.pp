@@ -1,9 +1,7 @@
 # Class: vision_default::zsh
 # ===========================
 
-class vision_default::zsh (
-
-  ){
+class vision_default::zsh {
 
   if !defined(Package['zsh']) {
     package { 'zsh':
@@ -14,6 +12,7 @@ class vision_default::zsh (
   file { '/root/.oh-my-zsh':
     ensure  => directory,
     recurse => remote,
+    mode    => '1755',
     source  => 'puppet:///modules/vision_default/oh-my-zsh/',
   }
 
