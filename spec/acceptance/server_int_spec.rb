@@ -33,6 +33,7 @@ describe 'vision_default' do
 
        class { 'vision_default':
          location      => 'int',
+         codename      => 'stretch',
          type          => 'server',
          manufacturer  => 'HP',
          dom0_hostname => 'beaker',
