@@ -33,7 +33,6 @@ describe 'vision_default' do
          location      => 'int',
          type          => 'desktop',
          manufacturer  => 'Something',
-         dom0_hostname => 'beaker',
          ip            => '127.0.0.1',
          default_packages => { 'tmux' => {'ensure' => 'present'}},
          sysctl_entries   => { 'fs.inotify.max_user_watches' => { 'value' => '500000' }},
