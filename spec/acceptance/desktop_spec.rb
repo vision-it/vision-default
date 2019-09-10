@@ -36,7 +36,6 @@ describe 'vision_default' do
          ip            => '127.0.0.1',
          default_packages => { 'tmux' => {'ensure' => 'present'}},
          sysctl_entries   => { 'fs.inotify.max_user_watches' => { 'value' => '500000' }},
-         dns_cnames       => [],
          dns_nameservers  => [],
          dns_search       => [],
          dns_domain       => 'beaker',

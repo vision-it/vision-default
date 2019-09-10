@@ -31,7 +31,6 @@ class vision_default (
   Optional[String] $manufacturer   = $::manufacturer,
 
   Optional[String] $dns_domain     = undef,
-  Optional[Array] $dns_cnames      = [],
   Optional[Array] $dns_nameservers = [],
   Optional[Array] $dns_search      = [],
 
@@ -83,11 +82,7 @@ class vision_default (
 
   # /etc/resolv.conf
   if $location == 'dmz' {
-    class { '::resolv_conf':
-      nameservers => $dns_nameservers,
-      domainname  => $dns_domain,
-      searchpath  => $dns_search
-    }
+    contain vision_default::resolv
   }
 
   # Hostsfile

@@ -1,7 +1,7 @@
 require 'spec_helper_acceptance'
 
 describe 'vision_default' do
-  context 'Server Int' do
+  context 'Server DMZ' do
     it 'idempotentlies run' do
       pre = <<-FILE
           file { '/root/.ssh/authorized_keys':
@@ -31,15 +31,18 @@ describe 'vision_default' do
           class vision_ssh () {}
           class vision_sudo () {}
 
+          # Docker doesnt like us managing the resolv.conf
+          class vision_default::resolv () {}
+
        class { 'vision_default':
-         location      => 'int',
+         location      => 'dmz',
          codename      => 'stretch',
          type          => 'server',
          manufacturer  => 'HP',
          ip            => '127.0.0.1',
          default_packages => { 'tmux' => {'ensure' => 'present'}},
-         dns_nameservers  => [],
-         dns_search       => [],
+         dns_nameservers  => ['1.2.3.4'],
+         dns_search       => ['foobar'],
          dns_domain       => 'beaker',
         }
       FILE
@@ -79,12 +82,6 @@ describe 'vision_default' do
     end
     describe package('ssacli') do
       it { is_expected.to be_installed }
-    end
-  end
-
-  context 'resolv not provisioned' do
-    describe file('/etc/resolv.conf') do
-      it { is_expected.not_to contain 'Puppet' }
     end
   end
 

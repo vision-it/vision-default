@@ -4,9 +4,6 @@ fixtures:
     stdlib:
       ref: "4.25.1"
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib"
-    resolv_conf:
-      ref: "v3.0.5"
-      repo: "https://github.com/saz/puppet-resolv_conf"
     apt:
       ref: "5.0.1"
       repo: "https://github.com/puppetlabs/puppetlabs-apt"
