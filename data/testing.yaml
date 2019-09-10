@@ -1,7 +1,6 @@
 ---
 vision_default::location: 'dmz'
 vision_default::ip: '127.0.0.1'
-vision_default::dom0_hostname: 'beaker'
 vision_default::repo_key: 'foobar'
 vision_default::repo_url: 'locahost'
 vision_default::repo_keyid: '9E3E53F19C7DE460'

@@ -24,7 +24,7 @@ describe 'vision_default' do
           'class vision_logcheck () {}',
           'class vision_ntp () {}',
           'class vision_pki () {}',
-          'class vision_puppet::client () {}',
+          'class vision_puppet::masterless () {}',
           'class vision_rsyslog () {}',
           'class vision_smart () {}',
           'class vision_ssh () {}',
