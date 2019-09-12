@@ -3,6 +3,16 @@ require 'spec_helper_acceptance'
 describe 'vision_default' do
   context 'Server DMZ' do
     it 'idempotentlies run' do
+      pre = <<-FILE
+          file { '/root/.ssh/authorized_keys':
+            ensure => present,
+          }->
+          file_line { 'add ssh key':
+            ensure => present,
+            path   => '/root/.ssh/authorized_keys',
+            line   => 'ssh-rsa THISLINESHOULDBEREMOVED',
+          }
+      FILE
       pp = <<-FILE
 
           class ruby () {}
@@ -15,31 +25,29 @@ describe 'vision_default' do
           class vision_logcheck () {}
           class vision_ntp () {}
           class vision_pki () {}
-          class vision_puppet::client () {}
+          class vision_puppet::masterless () {}
           class vision_rsyslog () {}
           class vision_smart () {}
           class vision_ssh () {}
           class vision_sudo () {}
 
-        class { 'vision_default':
-         backup_port   => '4444',
-         ssh_port      => '5555',
-         location      => 'dmzVm',
-         manufacturer  => 'Something',
+          # Docker doesnt like us managing the resolv.conf
+          class vision_default::resolv () {}
+
+       class { 'vision_default':
+         location      => 'dmz',
+         codename      => 'stretch',
          type          => 'server',
-         dom0_hostname => 'beaker',
-         hostname      => 'hostname',
-         fqdn          => 'beaker',
+         manufacturer  => 'HP',
          ip            => '127.0.0.1',
          default_packages => { 'tmux' => {'ensure' => 'present'}},
-         dns_cnames       => [],
-         dns_nameservers  => [],
-         dns_search       => [],
+         dns_nameservers  => ['1.2.3.4'],
+         dns_search       => ['foobar'],
          dns_domain       => 'beaker',
-         blacklist_kernel_modules => { 'floppy' => {'ensure' => 'present'}},
         }
       FILE
 
+      apply_manifest(pre, catch_failures: true)
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
     end
@@ -47,6 +55,32 @@ describe 'vision_default' do
 
   context 'example package installed' do
     describe package('tmux') do
+      it { is_expected.to be_installed }
+    end
+  end
+
+  context 'unmangaed ssh keys should be purged from accounts' do
+    describe file('/root/.ssh/authorized_keys') do
+      it { is_expected.not_to contain 'THISLINESHOULDBEREMOVED' }
+    end
+  end
+
+  context 'HPE repository enabled' do
+    if os[:release].to_i == 8
+      describe file('/etc/apt/sources.list.d/hpe.list') do
+        it { is_expected.to exist }
+        its(:content) { is_expected.to match 'hpe.com' }
+        its(:content) { is_expected.to match 'jessie' }
+      end
+    end
+    if os[:release].to_i == 9
+      describe file('/etc/apt/sources.list.d/hpe.list') do
+        it { is_expected.to exist }
+        its(:content) { is_expected.to match 'hpe.com' }
+        its(:content) { is_expected.to match 'stretch' }
+      end
+    end
+    describe package('ssacli') do
       it { is_expected.to be_installed }
     end
   end
@@ -74,16 +108,6 @@ describe 'vision_default' do
     end
   end
 
-  context 'etc hosts' do
-    describe file('/etc/hosts') do
-      it { is_expected.to be_file }
-      it { is_expected.to contain 'ip6-loopback' }
-      it { is_expected.to contain 'localhost' }
-      it { is_expected.to contain 'beaker' }
-      it { is_expected.to contain 'hostname' }
-    end
-  end
-
   context 'CA files provisioned' do
     describe file('/usr/local/share/ca-certificates/VisionCA.crt') do
       it { is_expected.to be_file }
@@ -91,20 +115,14 @@ describe 'vision_default' do
     end
   end
 
-  context 'facts provisioned' do
-    describe file('/opt/puppetlabs/facter/facts.d/nodetype.txt') do
+  context 'unattended upgrades' do
+    describe file('/etc/apt/apt.conf.d/50unattended-upgrades') do
       it { is_expected.to be_file }
-      it { is_expected.to contain 'server' }
+      it { is_expected.to contain 'label=Debian-Security' }
+      it { is_expected.to contain 'Reboot "false"' }
     end
-
-    describe file('/opt/puppetlabs/facter/facts.d/ssh_port.txt') do
-      it { is_expected.to be_file }
-      it { is_expected.to contain '5555' }
-    end
-
-    describe file('/opt/puppetlabs/facter/facts.d/backup_port.txt') do
-      it { is_expected.to be_file }
-      it { is_expected.to contain '4444' }
+    describe package('unattended-upgrades') do
+      it { is_expected.to be_installed }
     end
   end
 

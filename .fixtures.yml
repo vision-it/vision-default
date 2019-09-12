@@ -2,16 +2,13 @@
 fixtures:
   repositories:
     stdlib:
-      ref: "4.24.0"
+      ref: "4.25.1"
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib"
-    resolv_conf:
-      ref: "v3.0.5"
-      repo: "https://github.com/saz/puppet-resolv_conf"
     apt:
-      ref: "4.2.0"
+      ref: "5.0.1"
       repo: "https://github.com/puppetlabs/puppetlabs-apt"
     unattended_upgrades:
-      ref: "v3.1.0"
+      ref: "v4.0.0"
       repo: "https://github.com/voxpupuli/puppet-unattended_upgrades"
     vision_groups:
       repo: "https://github.com/vision-it/vision-groups"

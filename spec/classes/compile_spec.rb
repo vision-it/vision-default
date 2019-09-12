@@ -24,7 +24,7 @@ describe 'vision_default' do
           'class vision_logcheck () {}',
           'class vision_ntp () {}',
           'class vision_pki () {}',
-          'class vision_puppet::client () {}',
+          'class vision_puppet::masterless () {}',
           'class vision_rsyslog () {}',
           'class vision_smart () {}',
           'class vision_ssh () {}',
@@ -45,7 +45,7 @@ describe 'vision_default' do
 
         it { is_expected.to contain_class('vision_smart') }
         it { is_expected.to contain_class('vision_default::types::server') }
-        it { is_expected.not_to contain_class('resolv_conf') }
+        it { is_expected.not_to contain_class('vision_default::resolv') }
         it { is_expected.to compile.with_all_deps }
       end
 
@@ -56,14 +56,13 @@ describe 'vision_default' do
             location: 'dmz',
             codename: 'jessie',
             dns_domain: 'foobar',
-            dns_cnames: [],
             dns_nameservers: ['127.0.0.1']
           }
         end
 
         it { is_expected.to contain_class('vision_default::types::server') }
         it { is_expected.to contain_class('vision_smart') }
-        it { is_expected.to contain_class('resolv_conf') }
+        it { is_expected.to contain_class('vision_default::resolv') }
         it { is_expected.to compile.with_all_deps }
       end
 

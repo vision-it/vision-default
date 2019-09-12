@@ -14,7 +14,7 @@ describe 'vision_default' do
           class vision_munin () {}
           class vision_ntp () {}
           class vision_pki () {}
-          class vision_puppet::client () {}
+          class vision_puppet::masterless () {}
           class vision_rsyslog () {}
           class vision_smart () {}
           class vision_ssh () {}
@@ -33,11 +33,9 @@ describe 'vision_default' do
          location      => 'int',
          type          => 'desktop',
          manufacturer  => 'Something',
-         dom0_hostname => 'beaker',
          ip            => '127.0.0.1',
          default_packages => { 'tmux' => {'ensure' => 'present'}},
          sysctl_entries   => { 'fs.inotify.max_user_watches' => { 'value' => '500000' }},
-         dns_cnames       => [],
          dns_nameservers  => [],
          dns_search       => [],
          dns_domain       => 'beaker',

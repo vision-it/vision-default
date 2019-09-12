@@ -29,18 +29,12 @@ class vision_default (
   String $hp_repo_release          = "${codename}/current",
   Optional[String] $ip             = $::ipaddress,
   Optional[String] $manufacturer   = $::manufacturer,
-  Optional[String] $dom0_hostname  = $::dom0hostname,
-  Optional[String] $backup_port    = undef,
-  Optional[String] $ssh_port       = undef,
 
   Optional[String] $dns_domain     = undef,
-  Optional[Array] $dns_cnames      = [],
   Optional[Array] $dns_nameservers = [],
   Optional[Array] $dns_search      = [],
 
   Optional[Array] $backup_paths    = [],
-
-  Boolean $masterless              = false,
 
   Hash $default_packages           = { },
   Hash $sysctl_entries             = { },
@@ -68,13 +62,8 @@ class vision_default (
   contain ::vision_rsyslog
   contain ::vision_ssh
   contain ::vision_sudo
+  contain ::vision_puppet::masterless
   contain ::unattended_upgrades
-
-  if $masterless {
-    contain ::vision_puppet::masterless
-  } else {
-    contain ::vision_puppet::client
-  }
 
   contain "::vision_default::types::${type}"
 
@@ -93,11 +82,7 @@ class vision_default (
 
   # /etc/resolv.conf
   if $location == 'dmz' {
-    class { '::resolv_conf':
-      nameservers => $dns_nameservers,
-      domainname  => $dns_domain,
-      searchpath  => $dns_search
-    }
+    contain vision_default::resolv
   }
 
   # Hostsfile
@@ -113,10 +98,6 @@ class vision_default (
   }
 
   create_resources('host', $hosts)
-
-  if $location =~ /(dmz|int)Vm/ {
-    contain vision_default::hostexport
-  }
 
   # Sysctl
   $sysctl_defaults = {

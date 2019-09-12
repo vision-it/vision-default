@@ -25,7 +25,7 @@ describe 'vision_default' do
           class vision_logcheck () {}
           class vision_ntp () {}
           class vision_pki () {}
-          class vision_puppet::client () {}
+          class vision_puppet::masterless () {}
           class vision_rsyslog () {}
           class vision_smart () {}
           class vision_ssh () {}
@@ -36,10 +36,8 @@ describe 'vision_default' do
          codename      => 'stretch',
          type          => 'server',
          manufacturer  => 'HP',
-         dom0_hostname => 'beaker',
          ip            => '127.0.0.1',
          default_packages => { 'tmux' => {'ensure' => 'present'}},
-         dns_cnames       => [],
          dns_nameservers  => [],
          dns_search       => [],
          dns_domain       => 'beaker',
@@ -81,6 +79,12 @@ describe 'vision_default' do
     end
     describe package('ssacli') do
       it { is_expected.to be_installed }
+    end
+  end
+
+  context 'resolv not provisioned' do
+    describe file('/etc/resolv.conf') do
+      it { is_expected.not_to contain 'Puppet' }
     end
   end
 
