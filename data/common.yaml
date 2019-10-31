@@ -1,0 +1,42 @@
+---
+vision_default::hp_repo_keyid: "57446EFDE098E5C934B69C7DC208ADDE26C2B797"
+vision_default::hp_repo_keysource: "http://downloads.linux.hpe.com/SDR/hpePublicKey2048_key1.pub"
+vision_default::hp_repo_location: "http://downloads.linux.hpe.com/SDR/repo/mcp"
+vision_default::type: 'server'
+
+vision_default::blacklist_kernel_modules:
+  floppy:
+    ensure: present
+
+vision_default::backup_paths:
+  - '/etc'
+  - '/root'
+  - '/opt'
+  - '/vision'
+
+vision_default::hosts:
+  localhost:
+    ip: 127.0.0.1
+  ip6-localhost:
+    ip: '::1'
+    host_aliases: ip6-loopback
+  ip6-localnet:
+    ip: 'fe00::0'
+  ip6-mcastprefix:
+    ip: 'ff00::0'
+  ip6-allnodes:
+    ip: 'ff02::1'
+  ip6-allrouters:
+    ip: 'ff02::2'
+  ip6-allhosts:
+    ip: 'ff02::3'
+
+lookup_options:
+  vision_default::default_packages:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  vision_default::hosts:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
