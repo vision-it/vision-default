@@ -15,7 +15,6 @@ class vision_default::types::offline (
 ) {
 
   contain ::vision_exim
-  contain ::vision_pki
 
   class { '::vision_firewall':
     require => Class['vision_default::facts'],
