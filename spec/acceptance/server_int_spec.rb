@@ -16,13 +16,11 @@ describe 'vision_default' do
       pp = <<-FILE
 
           class ruby () {}
-          class vision_apt::unattended_upgrades () {}
           class vision_bareos () {}
           class vision_editors::zile () {}
           class vision_exim () {}
           class vision_firewall () {}
           class vision_icinga2 () {}
-          class vision_logcheck () {}
           class vision_ntp () {}
           class vision_puppet::masterless () {}
           class vision_rsyslog () {}
