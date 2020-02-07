@@ -21,6 +21,7 @@ describe 'vision_default' do
           class vision_exim () {}
           class vision_firewall () {}
           class vision_icinga2 () {}
+          class vision_logrotate () {}
           class vision_ntp () {}
           class vision_puppet::masterless () {}
           class vision_rsyslog () {}
