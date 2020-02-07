@@ -23,6 +23,7 @@ class vision_default::types::server (
   contain ::vision_bareos
   contain ::vision_exim
   contain ::vision_icinga2
+  contain ::vision_logrotate
   contain ::vision_editors::zile
 
   class { '::vision_firewall':
