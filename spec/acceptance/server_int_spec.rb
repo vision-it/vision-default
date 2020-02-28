@@ -16,6 +16,7 @@ describe 'vision_default' do
       pp = <<-FILE
 
           class ruby () {}
+          class vision_auditd () {}
           class vision_bareos () {}
           class vision_editors::zile () {}
           class vision_exim () {}
