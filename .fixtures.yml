@@ -16,11 +16,5 @@ fixtures:
     vision_groups:
       repo: "https://github.com/vision-it/vision-groups"
       ref: "origin/production"
-    augeasproviders_core:
-      repo: "https://github.com/hercules-team/augeasproviders_core"
-      ref: "2.5.0"
-    augeasproviders_sysctl:
-      repo: "https://github.com/hercules-team/augeasproviders_sysctl"
-      ref: "2.3.1"
   symlinks:
     vision_default: '#{source_dir}'

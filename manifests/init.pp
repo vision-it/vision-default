@@ -38,7 +38,6 @@ class vision_default (
   Optional[Array] $backup_paths    = [],
 
   Hash $default_packages           = { },
-  Hash $sysctl_entries             = { },
   Hash $blacklist_kernel_modules   = { },
   Hash $monitor_setup              = { },
 
@@ -99,12 +98,5 @@ class vision_default (
   }
 
   create_resources('host', $hosts)
-
-  # Sysctl
-  $sysctl_defaults = {
-    'ensure' => present,
-  }
-
-  create_resources(sysctl, $sysctl_entries, $sysctl_defaults)
 
 }

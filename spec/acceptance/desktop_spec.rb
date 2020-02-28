@@ -31,7 +31,6 @@ describe 'vision_default' do
          manufacturer  => 'Something',
          ip            => '127.0.0.1',
          default_packages => { 'tmux' => {'ensure' => 'present'}},
-         sysctl_entries   => { 'fs.inotify.max_user_watches' => { 'value' => '500000' }},
          dns_nameservers  => [],
          dns_search       => [],
          dns_domain       => 'beaker',
@@ -106,13 +105,6 @@ describe 'vision_default' do
       it { is_expected.to be_mode 775 }
       it { is_expected.to be_owned_by 'root' }
       it { is_expected.to be_grouped_into 'vision-it' }
-    end
-  end
-
-  context 'Sysctl entries' do
-    it 'has applied successfully the inotify.max_user_watches entry' do
-      result = on(default, 'sysctl -n fs.inotify.max_user_watches').stdout.strip
-      expect(result).to eql('500000')
     end
   end
 
