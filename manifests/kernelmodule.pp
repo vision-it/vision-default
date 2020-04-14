@@ -1,12 +1,8 @@
-# Class: vision_default::kernelmodule
+# Define: vision_default::kernelmodule
 # ===========================
 #
 # To blacklist kernel modules
 #
-# Parameters
-# ----------
-#
-
 define vision_default::kernelmodule (
 
   $ensure = present,

@@ -1,8 +1,7 @@
 # Class: vision_default::resolv
 # ===========================
+#
 # Manage resolv.conf
-
-# contain ::vision_default::resolv
 #
 
 class vision_default::resolv (

@@ -1,15 +1,7 @@
 # Class: vision_default::packages
 # ===========================
 #
-# Parameters
-# ----------
-#
-# Examples
-# --------
-#
-# @example
-# contain ::vision_default::packages
-#
+# Creates Resources for all packages
 
 class vision_default::packages (
 
@@ -17,7 +9,7 @@ class vision_default::packages (
 
 ) {
 
-$package_default = {
+  $package_default = {
     ensure   => present,
     provider => apt,
   }

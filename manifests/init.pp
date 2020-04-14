@@ -7,8 +7,15 @@
 # Parameters
 # ----------
 #
-# Examples
-# --------
+# @param hp_repo_keyid Apt Key ID for HP repository
+# @param hp_repo_keysource Apt Key Remote Source for HP repository
+# @param hp_repo_location Apt Remote Location for HP repository
+# @param hosts Content of /etc/hosts
+# @param ca_content Content Custom Root CA Certificate
+# @param backup_paths List of paths to include in Backup (See Bareos)
+# @param default_packages List of packages to install
+# @param blacklist_kernel_modules List of Kernel modules to deactivate
+# @param monitor_setup List of xrandr settings
 #
 # @example
 # contain ::vision_default

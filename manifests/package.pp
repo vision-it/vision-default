@@ -1,16 +1,12 @@
-# Class: vision_default::package
+# Define: vision_default::package
 # ===========================
 #
 # Parameters
 # ----------
 #
-# Examples
-# --------
+# @param provider Installation Provider (apt, gem, etc.)
+# @param ensure Status of Package
 #
-# @example
-# contain ::vision_default::package
-#
-
 define vision_default::package (
 
   $provider = apt,

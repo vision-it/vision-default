@@ -3,9 +3,6 @@
 #
 # Default profile for all desktop nodes.
 #
-# Parameters
-# ----------
-#
 class vision_default::types::desktop (
 
   Hash $monitor_setup = $vision_default::monitor_setup,

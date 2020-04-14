@@ -1,11 +1,7 @@
 # Class: vision_default::files
 # ===========================
 #
-# Parameters
-# ----------
-#
-# Examples
-# --------
+# Manage basic files and directories
 #
 # @example
 # contain ::vision_default::files

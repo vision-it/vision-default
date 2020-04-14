@@ -1,13 +1,7 @@
 # Class: vision_default::ca
 # ===========================
 #
-# Install the Vision CA
-#
-# Parameters
-# ----------
-#
-# Examples
-# --------
+# Install the Vision CA Certificate
 #
 # @example
 # contain ::vision_default::ca

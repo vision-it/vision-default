@@ -1,6 +1,8 @@
 # Class: vision_default::zsh
 # ===========================
-
+#
+# Manages zsh installation on all nodes
+#
 class vision_default::zsh {
 
   if !defined(Package['zsh']) {

@@ -1,11 +1,7 @@
 # Class: vision_default::facts
 # ===========================
 #
-# Parameters
-# ----------
-#
-# Examples
-# --------
+# Manage Facter custom facts
 #
 # @example
 # contain ::vision_default::facts
