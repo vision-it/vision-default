@@ -16,7 +16,6 @@ class vision_default::types::server (
 
 ) {
 
-  contain ::vision_auditd
   contain ::vision_bareos
   contain ::vision_prometheus::exporter::node
   contain ::vision_exim
