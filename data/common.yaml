@@ -7,6 +7,8 @@ vision_default::type: 'server'
 vision_default::blacklist_kernel_modules:
   floppy:
     ensure: present
+  acpi_power_meter::
+    ensure: present
 
 vision_default::backup_paths:
   - '/etc'
