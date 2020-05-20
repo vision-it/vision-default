@@ -9,10 +9,6 @@ define vision_default::kernelmodule (
 
 ) {
 
-  package { 'kmod':
-    ensure => present
-  }
-
   file { "/etc/modprobe.d/blacklist-${title}.conf":
     ensure  => $ensure,
     content => "blacklist ${title}",
