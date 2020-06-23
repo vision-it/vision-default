@@ -12,6 +12,9 @@ describe 'vision_default' do
             path   => '/root/.ssh/authorized_keys',
             line   => 'ssh-rsa THISLINESHOULDBEREMOVED',
           }
+          package { 'kmod':
+           ensure => present
+          }
       FILE
       pp = <<-FILE
 
@@ -130,6 +133,10 @@ describe 'vision_default' do
     describe file('/etc/modprobe.d/blacklist-floppy.conf') do
       it { is_expected.to be_file }
       it { is_expected.to contain 'blacklist floppy' }
+    end
+    describe file('/etc/modprobe.d/blacklist-acpi_power_meter.conf') do
+      it { is_expected.to be_file }
+      it { is_expected.to contain 'blacklist acpi_power_meter' }
     end
   end
 end
