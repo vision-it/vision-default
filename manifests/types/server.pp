@@ -51,7 +51,7 @@ class vision_default::types::server (
       -> apt::source { 'hpe':
         location => $hp_repo_location,
         key      => $hp_repo_keyid,
-        release  => $hp_repo_release,
+        release  => "${hp_repo_release}/current",
         repos    => 'non-free',
       }
       -> package { 'ssacli':
