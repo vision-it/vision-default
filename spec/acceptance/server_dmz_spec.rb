@@ -69,18 +69,18 @@ describe 'vision_default' do
   end
 
   context 'HPE repository enabled' do
-    if os[:release].to_i == 8
-      describe file('/etc/apt/sources.list.d/hpe.list') do
-        it { is_expected.to exist }
-        its(:content) { is_expected.to match 'hpe.com' }
-        its(:content) { is_expected.to match 'jessie' }
-      end
-    end
     if os[:release].to_i == 9
       describe file('/etc/apt/sources.list.d/hpe.list') do
         it { is_expected.to exist }
         its(:content) { is_expected.to match 'hpe.com' }
-        its(:content) { is_expected.to match 'stretch' }
+        its(:content) { is_expected.to match 'stretch/current' }
+      end
+    end
+    if os[:release].to_i == 10
+      describe file('/etc/apt/sources.list.d/hpe.list') do
+        it { is_expected.to exist }
+        its(:content) { is_expected.to match 'hpe.com' }
+        its(:content) { is_expected.to match 'buster/current' }
       end
     end
     describe package('ssacli') do
