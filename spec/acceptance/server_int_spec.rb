@@ -25,7 +25,6 @@ describe 'vision_default' do
           class vision_logrotate () {}
           class vision_ntp () {}
           class vision_puppet::masterless () {}
-          class vision_rsyslog () {}
           class vision_smart () {}
           class vision_ssh () {}
           class vision_sudo () {}
@@ -125,6 +124,26 @@ describe 'vision_default' do
     end
     describe package('unattended-upgrades') do
       it { is_expected.to be_installed }
+    end
+  end
+
+  context 'rsyslog provisioned' do
+    describe file('/etc/rsyslog.conf') do
+      it { is_expected.to be_file }
+      it { is_expected.to be_mode 644 }
+      it { is_expected.to contain 'This file is managed by puppet' }
+    end
+
+    describe file('/etc/rsyslog.d/firewall.conf') do
+      it { is_expected.to be_file }
+      it { is_expected.to be_mode 644 }
+      it { is_expected.to contain 'iptables' }
+    end
+
+    describe file('/etc/rsyslog.d/puppet.conf') do
+      it { is_expected.to be_file }
+      it { is_expected.to be_mode 644 }
+      it { is_expected.to contain 'local6.* /var/log/puppetlabs/puppet/agent.log' }
     end
   end
 
