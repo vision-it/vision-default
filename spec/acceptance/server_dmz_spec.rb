@@ -19,7 +19,6 @@ describe 'vision_default' do
       pp = <<-FILE
 
           class ruby () {}
-          class vision_auditd () {}
           class vision_prometheus::exporter::node () {}
           class vision_bareos () {}
           class vision_editors::zile () {}
@@ -27,7 +26,6 @@ describe 'vision_default' do
           class vision_firewall () {}
           class vision_icinga2 () {}
           class vision_logrotate () {}
-          class vision_ntp () {}
           class vision_puppet::masterless () {}
           class vision_rsyslog () {}
           class vision_smart () {}
@@ -65,6 +63,16 @@ describe 'vision_default' do
   context 'unmangaed ssh keys should be purged from accounts' do
     describe file('/root/.ssh/authorized_keys') do
       it { is_expected.not_to contain 'THISLINESHOULDBEREMOVED' }
+    end
+  end
+
+  context 'ntp provisioned' do
+    describe file('/etc/ntp.conf') do
+      it { is_expected.to be_file }
+      it { is_expected.to contain 'Managed by' }
+      it { is_expected.to contain 'driftfile /var/lib/ntp/ntp.drift' }
+      it { is_expected.to contain 'restrict foobar nomodify' }
+      it { is_expected.to contain 'server bar.foo.de' }
     end
   end
 
