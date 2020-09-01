@@ -1,4 +1,8 @@
 ---
+vision_default::ntp::servers:
+  - 'bar.foo.de'
+vision_default::ntp::restrictions:
+  - 'foobar nomodify'
 vision_default::location: 'dmz'
 vision_default::ip: '127.0.0.1'
 vision_default::ca_content: 'Certificate'

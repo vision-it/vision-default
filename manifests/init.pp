@@ -65,7 +65,6 @@ class vision_default (
   contain ::ruby
   contain ::apt
   contain ::vision_groups
-  contain ::vision_ntp
   contain ::vision_rsyslog
   contain ::vision_ssh
   contain ::vision_sudo
@@ -82,6 +81,7 @@ class vision_default (
   }
 
   # Files, directories and facts
+  contain vision_default::ntp
   contain vision_default::files
   contain vision_default::facts
   contain vision_default::ca
