@@ -64,12 +64,12 @@ class vision_default (
 
   contain ::ruby
   contain ::apt
+  contain ::unattended_upgrades
+
   contain ::vision_groups
-  contain ::vision_rsyslog
   contain ::vision_ssh
   contain ::vision_sudo
   contain ::vision_puppet::masterless
-  contain ::unattended_upgrades
 
   contain "::vision_default::types::${type}"
 
@@ -82,6 +82,7 @@ class vision_default (
 
   # Files, directories and facts
   contain vision_default::ntp
+  contain vision_default::rsyslog
   contain vision_default::files
   contain vision_default::facts
   contain vision_default::ca

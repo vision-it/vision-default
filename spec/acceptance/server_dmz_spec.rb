@@ -26,7 +26,6 @@ describe 'vision_default' do
           class vision_icinga2 () {}
           class vision_logrotate () {}
           class vision_puppet::masterless () {}
-          class vision_rsyslog () {}
           class vision_smart () {}
           class vision_ssh () {}
           class vision_sudo () {}

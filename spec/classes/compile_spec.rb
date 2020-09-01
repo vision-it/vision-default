@@ -14,7 +14,6 @@ describe 'vision_default' do
       let :pre_condition do
         [
           'class ruby () {}',
-          'class vision_auditd () {}',
           'class vision_bareos () {}',
           'class vision_prometheus::exporter::node () {}',
           'class vision_exim () {}',
@@ -24,7 +23,6 @@ describe 'vision_default' do
           'class vision_icinga2 () {}',
           'class vision_ntp () {}',
           'class vision_puppet::masterless () {}',
-          'class vision_rsyslog () {}',
           'class vision_smart () {}',
           'class vision_ssh () {}',
           'class vision_sudo () {}',
@@ -75,20 +73,6 @@ describe 'vision_default' do
         end
 
         it { is_expected.to contain_class('vision_default::types::server') }
-        it { is_expected.not_to contain_class('vision_smart') }
-        it { is_expected.to compile.with_all_deps }
-      end
-
-      context 'Desktop Int' do
-        let(:params) do
-          {
-            type: 'desktop',
-            codename: 'jessie',
-            location: 'int'
-          }
-        end
-
-        it { is_expected.to contain_class('vision_default::types::desktop') }
         it { is_expected.not_to contain_class('vision_smart') }
         it { is_expected.to compile.with_all_deps }
       end
