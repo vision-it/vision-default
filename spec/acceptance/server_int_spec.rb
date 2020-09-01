@@ -19,7 +19,6 @@ describe 'vision_default' do
           class vision_auditd () {}
           class vision_bareos () {}
           class vision_prometheus::exporter::node () {}
-          class vision_editors::zile () {}
           class vision_exim () {}
           class vision_firewall () {}
           class vision_icinga2 () {}
