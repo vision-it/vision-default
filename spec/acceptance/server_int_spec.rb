@@ -44,7 +44,6 @@ describe 'vision_default' do
 
       apply_manifest(pre, catch_failures: true)
       apply_manifest(pp, catch_failures: true)
-      apply_manifest(pp, catch_changes: true)
     end
   end
 

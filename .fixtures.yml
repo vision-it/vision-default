@@ -10,6 +10,9 @@ fixtures:
     host_core:
       ref: "1.0.2"
       repo: "https://github.com/puppetlabs/puppetlabs-host_core"
+    mailalias_core:
+      ref: "1.0.6"
+      repo: "https://github.com/puppetlabs/puppetlabs-mailalias_core"
     unattended_upgrades:
       ref: "v4.0.0"
       repo: "https://github.com/voxpupuli/puppet-unattended_upgrades"
