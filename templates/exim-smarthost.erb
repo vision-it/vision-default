@@ -1,0 +1,16 @@
+# Warning: This file is managed by Puppet
+
+.ifdef DCconfig_smarthost DCconfig_satellite
+
+vision:
+  debug_print = "R: smarthost for $local_part@$domain"
+  driver = manualroute
+  domains = ! +local_domains
+  transport = remote_smtp_smarthost
+  route_list = * DCsmarthost/mx:DCsmarthost byname
+  host_find_failed = ignore
+  host_all_ignored = defer
+  same_domain_copy_routing = yes
+  no_more
+
+.endif

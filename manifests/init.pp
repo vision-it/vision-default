@@ -81,6 +81,7 @@ class vision_default (
   }
 
   # Files, directories and facts
+  contain vision_default::exim
   contain vision_default::ntp
   contain vision_default::rsyslog
   contain vision_default::files

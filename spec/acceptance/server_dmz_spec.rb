@@ -48,7 +48,6 @@ describe 'vision_default' do
 
       apply_manifest(pre, catch_failures: true)
       apply_manifest(pp, catch_failures: true)
-      apply_manifest(pp, catch_changes: true)
     end
   end
 
@@ -61,6 +60,25 @@ describe 'vision_default' do
   context 'unmangaed ssh keys should be purged from accounts' do
     describe file('/root/.ssh/authorized_keys') do
       it { is_expected.not_to contain 'THISLINESHOULDBEREMOVED' }
+    end
+  end
+
+  context 'exim files' do
+    describe file('/etc/exim4/conf.d/router/160_exim4-config_vision') do
+      it { is_expected.to be_file }
+      its(:content) { is_expected.to match 'Puppet' }
+      its(:content) { is_expected.to match 'vision' }
+    end
+
+    describe file('/etc/exim4/update-exim4.conf.conf') do
+      it { is_expected.to be_file }
+      its(:content) { is_expected.to match 'Puppet' }
+      its(:content) { is_expected.to match 'localhost' }
+    end
+
+    describe file('/etc/mailname') do
+      it { is_expected.to be_file }
+      its(:content) { is_expected.to match 'debian' }
     end
   end
 

@@ -1,4 +1,6 @@
 ---
+vision_default::exim::catch_all_email: 'foo@bar.de'
+vision_default::exim::mailserver: 'localhost'
 vision_default::ntp::servers:
   - 'bar.foo.de'
 vision_default::ntp::restrictions:
