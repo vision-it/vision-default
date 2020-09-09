@@ -59,6 +59,24 @@ describe 'vision_default' do
     end
   end
 
+  context 'groups created' do
+    describe group('openldap') do
+      it { is_expected.to exist }
+    end
+    describe group('Debian-exim') do
+      it { is_expected.to exist }
+    end
+    describe group('storage') do
+      it { is_expected.to exist }
+    end
+    describe group('ssl-cert') do
+      it { is_expected.to exist }
+    end
+    describe group('monitor') do
+      it { is_expected.to exist }
+    end
+  end
+
   context 'HPE repository enabled' do
     if os[:release].to_i == 9
       describe file('/etc/apt/sources.list.d/hpe.list') do

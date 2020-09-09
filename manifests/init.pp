@@ -47,6 +47,7 @@ class vision_default (
   Hash $default_packages           = { },
   Hash $blacklist_kernel_modules   = { },
   Hash $monitor_setup              = { },
+  Hash $groups                     = { },
 
   ) {
 
@@ -66,7 +67,6 @@ class vision_default (
   contain ::apt
   contain ::unattended_upgrades
 
-  contain ::vision_groups
   contain ::vision_ssh
   contain ::vision_sudo
   contain ::vision_puppet::masterless
@@ -107,5 +107,6 @@ class vision_default (
   }
 
   create_resources('host', $hosts)
+  create_resources('group', $groups)
 
 }
