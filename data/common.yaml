@@ -33,6 +33,23 @@ vision_default::hosts:
   ip6-allhosts:
     ip: 'ff02::3'
 
+vision_default::groups:
+  monitor:
+    ensure: 'present'
+    system: true
+  Debian-exim:
+    ensure: 'present'
+    system: true
+  storage:
+    ensure: 'present'
+    system: true
+  openldap:
+    ensure: 'present'
+    system: true
+  ssl-cert:
+    ensure: 'present'
+    system: true
+
 lookup_options:
   vision_default::default_packages:
     merge:
