@@ -14,6 +14,6 @@ class vision_default::packages (
     provider => apt,
   }
 
-  create_resources('vision_default::package', $packages, $package_default)
+  create_resources('package', $packages, $package_default)
 
 }
