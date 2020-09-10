@@ -66,10 +66,7 @@ class vision_default (
   contain ::ruby
   contain ::apt
   contain ::unattended_upgrades
-
-  contain ::vision_sudo
   contain ::vision_puppet::masterless
-
   contain "::vision_default::types::${type}"
 
   user { 'root':
@@ -94,8 +91,9 @@ class vision_default (
     contain vision_default::resolv
   }
 
-  # Hostsfile
+  # Skipped in development
   if $location != 'vrt' {
+    contain ::vision_default::sudo
     resources { 'host':
       purge => true
     }

@@ -22,7 +22,6 @@ describe 'vision_default' do
           class vision_logrotate () {}
           class vision_puppet::masterless () {}
           class vision_smart () {}
-          class vision_sudo () {}
 
        class { 'vision_default':
          location      => 'int',
@@ -142,6 +141,36 @@ describe 'vision_default' do
       it { is_expected.to be_file }
       it { is_expected.to be_mode 644 }
       it { is_expected.to contain 'local6.* /var/log/puppetlabs/puppet/agent.log' }
+    end
+  end
+
+  context 'sudo managed' do
+    describe package('sudo') do
+      it { is_expected.to be_installed }
+    end
+    describe file('/etc/sudoers.d/vision-it') do
+      it { is_expected.to contain 'This file is managed by puppet' }
+      it { is_expected.to be_mode 440 }
+    end
+    describe file('/etc/sudoers.d/nagios-hp') do
+      it { is_expected.to contain 'This file is managed by puppet' }
+      it { is_expected.to contain 'nagios' }
+      it { is_expected.to be_mode 440 }
+    end
+    describe file('/etc/sudoers.d/nagios-smart') do
+      it { is_expected.to contain 'This file is managed by puppet' }
+      it { is_expected.to contain 'nagios' }
+      it { is_expected.to be_mode 440 }
+    end
+    describe file('/etc/sudoers.d/nagios-docker') do
+      it { is_expected.to contain 'This file is managed by puppet' }
+      it { is_expected.to contain 'nagios' }
+      it { is_expected.to be_mode 440 }
+    end
+    describe file('/etc/sudoers.d/check-raid') do
+      it { is_expected.to contain 'This file is managed by Puppet' }
+      it { is_expected.to contain 'nagios' }
+      it { is_expected.to be_mode 440 }
     end
   end
 

@@ -21,7 +21,6 @@ describe 'vision_default' do
           'class vision_icinga2 () {}',
           'class vision_puppet::masterless () {}',
           'class vision_smart () {}',
-          'class vision_sudo () {}',
           'package {"zsh": ensure => installed}',
           'realize User["root"]'
         ]

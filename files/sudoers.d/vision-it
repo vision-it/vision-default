@@ -1,0 +1,5 @@
+# Warning: This file is managed by puppet; DO NOT EDIT
+# ====================================================
+# Allow members of group vision-it to execute any command
+
+%vision-it   ALL=(ALL:ALL) ALL

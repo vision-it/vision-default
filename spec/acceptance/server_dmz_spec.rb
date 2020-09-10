@@ -26,7 +26,6 @@ describe 'vision_default' do
           class vision_logrotate () {}
           class vision_puppet::masterless () {}
           class vision_smart () {}
-          class vision_sudo () {}
           # Docker doesnt like us managing the resolv.conf
           class vision_default::resolv () {}
 
