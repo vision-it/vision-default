@@ -6,9 +6,9 @@ vision_default::type: 'server'
 
 vision_default::blacklist_kernel_modules:
   floppy:
-    ensure: present
+    ensure: 'present'
   acpi_power_meter:
-    ensure: present
+    ensure: 'present'
 
 vision_default::backup_paths:
   - '/etc'
@@ -21,7 +21,7 @@ vision_default::hosts:
     ip: 127.0.0.1
   ip6-localhost:
     ip: '::1'
-    host_aliases: ip6-loopback
+    host_aliases: 'ip6-loopback'
   ip6-localnet:
     ip: 'fe00::0'
   ip6-mcastprefix:
@@ -56,6 +56,10 @@ lookup_options:
       strategy: deep
       merge_hash_arrays: true
   vision_default::hosts:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  vision_default::ssh::authorized_keys:
     merge:
       strategy: deep
       merge_hash_arrays: true

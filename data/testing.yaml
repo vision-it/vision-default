@@ -5,6 +5,13 @@ vision_default::ntp::servers:
   - 'bar.foo.de'
 vision_default::ntp::restrictions:
   - 'foobar nomodify'
+vision_default::nameservers:
+  - '1.1.1.1'
+vision_default::dns_search:
+  - 'foobar'
+vision_default::dns_domain: 'beaker'
+vision_default::location: 'dmz'
+vision_default::location: 'dmz'
 vision_default::location: 'dmz'
 vision_default::ip: '127.0.0.1'
 vision_default::ca_content: 'Certificate'
@@ -14,7 +21,20 @@ vision_default::repo_keyid: '9E3E53F19C7DE460'
 vision_default::dns_domain: 'beaker'
 vision_default::default_packages:
   tmux:
-    ensure: present
-vision_default::monitor_setup:
-  mypc:
-    xrandr: "xrandr --output 'DVI-I-1' --auto --left-of 'VGA-1'"
+    ensure: 'present'
+
+vision_default::ssh::authorized_keys:
+  beaker:
+    type: 'ssh-rsa'
+    key: 'beaker-key'
+    ensure: 'present'
+vision_default::ssh::ssh_options:
+  'Host x':
+    User: 'xxx'
+    Hostname: 'xxxample.com'
+  'Host foo':
+    Hostname: 'foo.bar.com'
+    IdentityFile: '/home/foo/rsa.key'
+    UserKnownHostsFile: '/dev/foo'
+  'Host *':
+    HashKnownHosts: 'no'

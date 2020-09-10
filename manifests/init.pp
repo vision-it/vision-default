@@ -67,7 +67,6 @@ class vision_default (
   contain ::apt
   contain ::unattended_upgrades
 
-  contain ::vision_ssh
   contain ::vision_sudo
   contain ::vision_puppet::masterless
 
@@ -81,6 +80,7 @@ class vision_default (
   }
 
   # Files, directories and facts
+  contain vision_default::ssh
   contain vision_default::exim
   contain vision_default::ntp
   contain vision_default::rsyslog

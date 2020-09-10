@@ -14,31 +14,19 @@ describe 'vision_default' do
           }
       FILE
       pp = <<-FILE
-
           class ruby () {}
-          class vision_auditd () {}
           class vision_bareos () {}
           class vision_prometheus::exporter::node () {}
-          class vision_exim () {}
           class vision_firewall () {}
           class vision_icinga2 () {}
           class vision_logrotate () {}
-          class vision_ntp () {}
           class vision_puppet::masterless () {}
           class vision_smart () {}
-          class vision_ssh () {}
           class vision_sudo () {}
 
        class { 'vision_default':
          location      => 'int',
-         codename      => 'stretch',
-         type          => 'server',
          manufacturer  => 'HP',
-         ip            => '127.0.0.1',
-         default_packages => { 'tmux' => {'ensure' => 'present'}},
-         dns_nameservers  => [],
-         dns_search       => [],
-         dns_domain       => 'beaker',
         }
       FILE
 
@@ -78,13 +66,6 @@ describe 'vision_default' do
   end
 
   context 'HPE repository enabled' do
-    if os[:release].to_i == 9
-      describe file('/etc/apt/sources.list.d/hpe.list') do
-        it { is_expected.to exist }
-        its(:content) { is_expected.to match 'hpe.com' }
-        its(:content) { is_expected.to match 'stretch/current' }
-      end
-    end
     if os[:release].to_i == 10
       describe file('/etc/apt/sources.list.d/hpe.list') do
         it { is_expected.to exist }

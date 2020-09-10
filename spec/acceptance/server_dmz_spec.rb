@@ -21,28 +21,18 @@ describe 'vision_default' do
           class ruby () {}
           class vision_prometheus::exporter::node () {}
           class vision_bareos () {}
-          class vision_exim () {}
           class vision_firewall () {}
           class vision_icinga2 () {}
           class vision_logrotate () {}
           class vision_puppet::masterless () {}
           class vision_smart () {}
-          class vision_ssh () {}
           class vision_sudo () {}
-
           # Docker doesnt like us managing the resolv.conf
           class vision_default::resolv () {}
 
        class { 'vision_default':
          location      => 'dmz',
-         codename      => 'stretch',
-         type          => 'server',
          manufacturer  => 'HP',
-         ip            => '127.0.0.1',
-         default_packages => { 'tmux' => {'ensure' => 'present'}},
-         dns_nameservers  => ['1.2.3.4'],
-         dns_search       => ['foobar'],
-         dns_domain       => 'beaker',
         }
       FILE
 
@@ -57,9 +47,43 @@ describe 'vision_default' do
     end
   end
 
-  context 'unmangaed ssh keys should be purged from accounts' do
+  context 'SSH provisioned' do
     describe file('/root/.ssh/authorized_keys') do
+      it { is_expected.to be_file }
+      it { is_expected.to contain 'beaker' }
       it { is_expected.not_to contain 'THISLINESHOULDBEREMOVED' }
+    end
+
+    describe file('/etc/motd') do
+      it { is_expected.to contain 'Change me' }
+    end
+
+    describe file('/etc/ssh/sshd_config') do
+      it { is_expected.to contain 'Port 22' }
+      it { is_expected.to contain 'PubkeyAuthentication yes' }
+      it { is_expected.to contain 'PermitRootLogin yes' }
+      it { is_expected.to contain 'UsePrivilegeSeparation yes' }
+      it { is_expected.to contain 'PasswordAuthentication no' }
+      it { is_expected.to contain 'PrintMotd yes' }
+      it { is_expected.to contain 'StrictModes yes' }
+    end
+
+    describe file('/etc/ssh/ssh_config') do
+      it { is_expected.to be_file }
+      it { is_expected.to be_readable.by('others') }
+      it { is_expected.not_to be_writable.by('others') }
+
+      it { is_expected.to contain 'Host x' }
+      it { is_expected.to contain('User xxx').after('Host x') }
+      it { is_expected.to contain('Hostname xxxample.com').after('Host x') }
+
+      it { is_expected.to contain 'Host foo' }
+      it { is_expected.to contain('Hostname foo.bar.com').after('Host foo') }
+      it { is_expected.to contain('IdentityFile /home/foo/rsa.key').after('Host foo') }
+      it { is_expected.to contain('UserKnownHostsFile /dev/foo').after('Host foo') }
+
+      it { is_expected.to contain 'Host *' }
+      it { is_expected.to contain 'HashKnownHosts no' }
     end
   end
 
