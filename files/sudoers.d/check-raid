@@ -1,0 +1,11 @@
+# Warning: This file is managed by Puppet; DO NOT EDIT
+# ====================================================
+# Lines matching CHECK_RAID added by /usr/lib/nagios/plugins/check_raid -S
+User_Alias CHECK_RAID=nagios, icinga, sensu
+Defaults:CHECK_RAID !requiretty
+CHECK_RAID ALL=(root) NOPASSWD: /sbin/ssacli controller all show status
+CHECK_RAID ALL=(root) NOPASSWD: /usr/sbin/ssacli controller all show status
+CHECK_RAID ALL=(root) NOPASSWD: /sbin/ssacli controller * logicaldrive all show
+CHECK_RAID ALL=(root) NOPASSWD: /usr/sbin/ssacli controller slot=0 logicaldrive all show
+CHECK_RAID ALL=(root) NOPASSWD: /sbin/dmsetup status --noflush
+CHECK_RAID ALL=(root) NOPASSWD: /sbin/dmsetup status

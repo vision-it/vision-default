@@ -1,0 +1,7 @@
+# Warning: This file is managed by puppet; DO NOT EDIT
+# ====================================================
+# Allow Icinga (with nagios user) to monitor HP values
+# without password authentication
+
+nagios       ALL=(ALL) NOPASSWD: /sbin/hpasmcli
+nagios       ALL=(ALL) NOPASSWD: /vision/monitoring-checks/check_hpacucli

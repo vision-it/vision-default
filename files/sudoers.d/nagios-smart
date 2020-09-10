@@ -1,0 +1,7 @@
+# Warning: This file is managed by puppet; DO NOT EDIT
+# ====================================================
+# Allow Icinga (with nagios user) to monitor SMART values
+# without password authentication
+
+nagios       ALL=(ALL) NOPASSWD: /usr/lib/nagios/plugins/check_ide_smart
+nagios       ALL=(ALL) NOPASSWD: /usr/lib/nagios/plugins/check_scsi_smart
