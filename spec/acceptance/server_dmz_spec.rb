@@ -19,10 +19,7 @@ describe 'vision_default' do
       pp = <<-FILE
 
           class ruby () {}
-          class vision_prometheus::exporter::node () {}
-          class vision_bareos () {}
           class vision_firewall () {}
-          class vision_icinga2 () {}
           class vision_logrotate () {}
           class vision_puppet::masterless () {}
           class vision_smart () {}

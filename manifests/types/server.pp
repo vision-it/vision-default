@@ -16,9 +16,6 @@ class vision_default::types::server (
 
 ) {
 
-  contain ::vision_bareos
-  contain ::vision_prometheus::exporter::node
-  contain ::vision_icinga2
   contain ::vision_logrotate
 
   class { '::vision_firewall':
@@ -32,12 +29,6 @@ class vision_default::types::server (
 
     # Smartctl
     contain ::vision_smart
-
-    if ($manufacturer == 'Supermicro') {
-      package { 'ipmitool':
-        ensure  => 'present',
-      }
-    }
 
     if ($manufacturer == 'HP') {
 
